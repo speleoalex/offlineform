@@ -8,55 +8,9 @@ Add this code within the html page between the <body> tags
 
 Add this code between the <head> tags :
 
- <!-- start SaveOfflineForm code -->
-        <script>
-            (navigator.appVersion.indexOf("MSIE") != -1) && alert("If you use the Explorer browser will not be able to save the data. Use Chrome or Firefox!");
-            //Add this code inside the tag "<body>":
-            //<button type="button" onclick="SaveAs();">Save</button>
-            var DownloadFile = function(data, name) {
-                var el = document.createElement('a');
-                var ev = document.createEvent("MouseEvents");
-                ev.initMouseEvent("click", true, false, self, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                el.setAttribute("href", 'data:application/octet-stream;base64,' + btoa(unescape(encodeURIComponent(data))));
-                el.setAttribute("download", name || self.location.pathname.slice(self.location.pathname.lastIndexOf('/') + 1));
-                el.dispatchEvent(ev);
-            };
-            var SaveAs = function () {
-                var elements = document.getElementsByTagName("input");
-                for (var i in elements) {
-                    try {
-                        elements[i].setAttribute("value", elements[i].value);
-                        if (elements[i].checked)
-                            elements[i].setAttribute("checked", "checked");
-                        else
-                            elements[i].removeAttribute("checked");
-                    } catch (e) {
-                    }
-                }
-                elements = document.getElementsByTagName("textarea");
-                for (var i in elements) {
-                    try {
-                        elements[i].innerHTML = elements[i].value;
-                    } catch (e) {
-                    }
-                }
-                elements = document.getElementsByTagName("select");
-                for (var i in elements) {
-                    if (elements[i].options) {
-                        var selectedIndex = elements[i].selectedIndex;
-                        for (var o in elements[i].options) {
-                            try {
-                                elements[i].options[o].removeAttribute("selected");
-                            } catch (e) {
-                            }
-                        }
-                        elements[i].options[selectedIndex].setAttribute("selected", "selected");
-                    }
-                }
-                var filename = document.getElementsByTagName("title")[0].innerHTML.replace(/ /g, "_") + "_" +
-                        new Date().toISOString().slice(0, 19).replace('T', '_').substr(0, 10) +
-                        ".html";
-                DownloadFile("<!DOCTYPE html>\n<html>\n" + document.getElementsByTagName("html")[0].innerHTML + "\n</html>", filename);
-            }
-        </script>
+<!-- start SaveOfflineForm code -->
+<script>
+            -1!=navigator.appVersion.indexOf("MSIE")&&alert("If you use the Explorer browser will not be able to save the data. Use Chrome or Firefox!");var DownloadFile=function(e,t){var a=document.createElement("a"),n=document.createEvent("MouseEvents");n.initMouseEvent("click",!0,!1,self,0,0,0,0,0,!1,!1,!1,!1,0,null),a.setAttribute("href","data:application/octet-stream;base64,"+btoa(unescape(encodeURIComponent(e)))),a.setAttribute("download",t||self.location.pathname.slice(self.location.pathname.lastIndexOf("/")+1)),a.dispatchEvent(n)},SaveAs=function(){var e=document.getElementsByTagName("input");for(var t in e)try{e[t].setAttribute("value",e[t].value),e[t].checked?e[t].setAttribute("checked","checked"):e[t].removeAttribute("checked")}catch(e){}for(var t in e=document.getElementsByTagName("textarea"))try{e[t].innerHTML=e[t].value}catch(e){}for(var t in e=document.getElementsByTagName("select"))if(e[t].options){var a=e[t].selectedIndex;for(var n in e[t].options)try{e[t].options[n].removeAttribute("selected")}catch(e){}e[t].options[a].setAttribute("selected","selected")}var o=document.getElementsByTagName("title")[0].innerHTML.replace(/ /g,"_")+"_"+(new Date).toISOString().slice(0,19).replace("T","_").substr(0,10)+".html";DownloadFile("<!DOCTYPE html>\n<html>\n"+document.getElementsByTagName("html")[0].innerHTML+"\n</html>",o)};
+</script>
 <!-- end SaveOfflineForm code -->
+
