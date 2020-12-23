@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, 
+              initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <title>Example</title>
+        <!-- start style -->
+        <style>
+            /*
+            1px = 0.2647 mm (1/96 inch)
+            1mm = 3.77786 px
+            */
+            @page {size: 210mm 297mm; margin: 15mm;}
+
+            html{background-color: #808080;}
+            body{font: 4mm "Arial";line-height:5mm;padding:1em;}
+            h1{font-size: 2.5em ; line-height:1em}
+            h2{font-size: 1.5em}
+            h3{font-size: 1.25em;font-weight: bold}
+            h4{font-size: 1.25em;font-weight: normal}
+            h5{font-size: 1em}
+            h6{font-size: 0.75em}
+            p, blockquote, pre, ol, dl, ul, form {line-height: 5mm}
+            html, body{margin: 0; padding: 0}
+            h1, h2, h3, h4, h5, h6{margin-left: 0px;}
+            address, blockquote, dl, form,fieldset, ol, table, p, pre, ul{
+                margin-top: 0;
+            }
+            li {margin-left: 6px;}
+            ul {list-style-type: square;}
+            hr {height: 1px;}
+            p {-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;}
+
+            textarea,input[type=text],input[type=date]{
+                border: 1px solid #dadada;
+                text-shadow: 1px 1px 1px #d0d0d0;
+                background-position:  initial;
+                background-image: url(data:image/gif;base64,R0lGODlhEwATAMIFANzu/+Lx/+Py//f7//v9/////////////ywAAAAAEwATAAADJyi63BKwyEnrDDZXrLvoHqh9okWW1IlK6tqibxmLM1iH63SPud6zCQA7);
+                line-height:5mm;
+                padding: 0px;
+            }
+            .page{
+                position:relative;
+                display:block;
+                height:297mm;
+                width:210mm;
+                margin: auto;
+                margin-top:5mm;
+                padding:5mm;
+                background-color: #ffffff;
+                page-break-inside:avoid;
+                box-shadow: 0px 0px 10px #000000;
+            }
+        </style>
+        <!-- end style -->
+        <!-- start splxsaveform code -->
+        <script>
+            if (navigator.appVersion.indexOf("MSIE") != -1)
+                alert("If you use the Explorer browser will not be able to save the data. Use Chrome or Firefox!");
+            //Add this code inside the tag "<body>":
+            //<button type="button" onclick="SaveAs();">Save</button> 
+            //save file------------------------------------------------->
+            var Download = {
+                click: function(node) {
+                    var ev = document.createEvent("MouseEvents");
+                    ev.initMouseEvent("click", true, false, self, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    return node.dispatchEvent(ev);
+                },
+                encode: function(data) {
+                    return 'data:application/octet-stream;base64,' + btoa(unescape(encodeURIComponent(data)));
+                },
+                link: function(data, name) {
+                    var a = document.createElement('a');
+                    a.download = name || self.location.pathname.slice(self.location.pathname.lastIndexOf('/') + 1);
+                    a.href = data || self.location.href;
+                    a.target = "_blank";
+                    a.type = "application/octet-stream";
+                    return a;
+                },
+                save: function(data, name) {
+                    this.click(
+                            this.link(
+                                    this.encode(data),
+                                    name
+                                    )
+                            );
+                }
+            };
+            function twoDigits(d) {
+                if (0 <= d && d < 10)
+                    return "0" + d.toString();
+                if (-10 < d && d < 0)
+                    return "-0" + (-1 * d).toString();
+                return d.toString();
+            }
+            function SaveAs() {
+                SaveData();
+                var str = document.getElementsByTagName("html")[0].innerHTML;
+                var title = document.getElementsByTagName("title")[0].innerHTML.replace(/ /g, "_");
+                var filename = title + "_" + new Date().toISOString().slice(0, 19).replace('T', '_').substr(0, 10) + ".html";
+                Download.save("<!DOCTYPE html>\n<html>\n" + str + "\n</html>", filename);
+            }
+            //save file-------------------------------------------------<
+            function SaveData() {
+                var elements = document.getElementsByTagName("input");
+                for (var i in elements)
+                {
+                    try {
+                        elements[i].setAttribute("value", elements[i].value);
+                        if (elements[i].checked)
+                            elements[i].setAttribute("checked", "checked");
+                        else
+                            elements[i].removeAttribute("checked");
+                    } catch (e) {
+                    }
+                }
+                elements = document.getElementsByTagName("textarea");
+                for (var i in elements)
+                {
+                    try {
+                        elements[i].innerHTML = elements[i].value;
+                    } catch (e) {
+                    }
+                }
+                elements = document.getElementsByTagName("select");
+                for (var i in elements)
+                {
+                    if (elements[i].options) {
+                        var selectedIndex = elements[i].selectedIndex;
+                        for (var o in elements[i].options)
+                        {
+                            try {
+                                elements[i].options[o].removeAttribute("selected");
+                            } catch (e) {
+                            }
+                        }
+                        elements[i].options[selectedIndex].setAttribute("selected", "selected");
+                    }
+                }
+            }
+        </script>
+        <!-- end splxsaveform code -->
+    </head>
+    <body>
+        <div class="page">
+            <h1>Sample form</h1>
+            <form method="post" target="_blank" action="http://www.example.com">
+                Date:<br>
+
+                <input type="date" name="date" value=""><br>
+                <br>Level:<br />
+                1<input type="radio" value="2" name="argument">
+                2<input type="radio" value="3" name="argument">
+                3<input type="radio" value="4" name="argument">
+                4<input type="radio" value="5" name="argument">
+                5<input type="radio" value="6" name="argument">
+                6<input type="radio" value="7" name="argument">
+                7<br>
+                Title:<br>
+                <input type="text" name="title" value=""><br>
+                Description:<br>
+                <textarea cols="80" rows="10" name="description">Test</textarea><br>
+                Note:<br>
+                <textarea cols="80" rows="10" name=""></textarea><br>
+                <select name="select_1">
+                    <option value="1">a</option>
+                    <option value="2">b</option>
+                    <option value="3">c</option>
+                    <option value="4">d</option>
+                </select><br />
+                <button type="button" onclick="SaveAs();">Save</button> 
+                <button type="submit" >Submit</button>
+                <button type="button" onclick="window.print()">Print</button>
+            </form>
+        </div>
+        <div class="page">page 2
+            <img src="100x100px.png" style="height:100px" />
+            <img src="100x100px.png" style="height:26.47mm"/>
+        </div>
+        <div class="page">page 3
+
+        </div>
+    </body></html>

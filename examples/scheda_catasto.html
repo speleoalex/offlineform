@@ -1,0 +1,1230 @@
+<!DOCTYPE html>
+<html><head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width">
+        <title>Scheda</title>
+        <!-- start style -->
+        <style>
+            /*
+            1px = 0.2647 mm (1/96 inch)
+            1mm = 3.77786 px
+            5mm = 19px
+            */
+            @page {size: 210mm 297mm; margin: 19px;}
+            *{
+                line-height:19px;
+                padding: 0px;
+                margin: 0px;
+            }
+            html{background-color: #808080;
+
+
+            }
+
+            body,input,td,select{font: 12px "Arial";line-height:19px;}
+            body{padding:1em;}
+            h1{font-size: 30px; line-height:40px;text-align: center}
+            h2{font-size: 2em;line-height:40px;text-align: center}
+            h3{font-size: 1em;font-weight: bold;line-height:19px;}
+            h4{font-size: 1em;font-weight: normal;line-height:19px;}
+            h5{font-size: 1em;line-height:19px;}
+            h6{font-size: 0.5em;line-height:19px;}
+            p, blockquote, pre, ol, dl, ul, form {line-height: 19px}
+            html, body{margin: 0; padding: 0}
+            h1, h2, h3, h4, h5, h6{margin-left: 0px;}
+            address, blockquote, dl, form,fieldset, ol, table, p, pre, ul{
+                margin-top: 0;
+            }
+            li {margin-left: 19px;}
+            ul {list-style-type: square;}
+            hr {height: 1px;}
+            p {-webkit-hyphens: auto;-moz-hyphens: auto;hyphens: auto;}
+            fieldset{ border: 1px dotted;padding:19px; background-color: #fafafa}
+            textarea,input,select{
+                border: 1px solid trasnsparent;
+                text-shadow: 0px 0px 2px #d0d0d0;
+                background-color: transparent;
+                vertical-align: middle
+
+
+            }
+            textarea{
+                background-position:  top;
+                line-height:19px;
+                padding: 0px;
+            }
+            textarea:hover{
+                border: 1px solid gold;
+            }
+            textarea:focus{
+                border: 1px solid darkorange;
+            }            
+            .page{
+                position:relative;
+                display:block;
+                height:auto;
+                width:210mm;
+                margin: auto;
+                margin-top:14px;
+                padding:14px;
+                background-color: #ffffff;
+                page-break-inside:avoid;
+                /*background-image: url(data:image/gif;base64,R0lGODlhDgAOAMIFANzu/+Lx/+Py//f7//v9/////////////ywAAAAADgAOAAADIii6rAEkyhlHKDhrTMT+RQdu4piVZuilKtuyqBmPM1h/XQIAOw==);*/
+                box-shadow: 0px 0px 10px #000000
+            }
+            input{
+                border:1px inset #ffffff;
+                height: 18px;
+                border-bottom: 1px solid #dadada;
+                border-radius: 2px;
+            }
+            input:hover{
+                border: 1px solid gold;
+            }
+            input:focus{
+                border: 1px solid darkorange;
+            }
+            .frm_group input{
+                font-weight: bold;
+            }
+            select{
+                border: 1px solid #dadada
+            }
+            button {
+                display: inline-block;
+                background: #eeeeee; /* Old browsers */
+                background: -moz-linear-gradient(top, #eeeeee 0%, #eeeeee 100%); /* FF3.6+ */
+                background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#eeeeee), color-stop(100%,#eeeeee)); /* Chrome,Safari4+ */
+                background: -webkit-linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* Chrome10+,Safari5.1+ */
+                background: -o-linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* Opera11.10+ */
+                background: -ms-linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* IE10+ */
+                filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#eeeeee',GradientType=0 ); /* IE6-9 */
+                background: linear-gradient(top, #eeeeee 0%,#eeeeee 100%); /* W3C */
+                border: 1px solid #a1a1a1;
+                padding: 0 2em;
+                margin: 0.5em;
+                font-size: 12px;
+                text-decoration: none;
+                color: #333;
+                border-radius: .2em;
+            }
+            button:hover {
+                border-color: gold
+            }
+            button:active {
+                position: relative;
+                top: 1px;
+            }
+            option{
+                background-color: #ffffff
+            }
+
+
+            .save:before   { content: "\2714  ";}
+            .email:before  { content: "\2709  ";}
+        </style>
+        <!-- end style -->
+        <!-- start splxsaveform code -->
+        <script>
+            if (navigator.appVersion.indexOf("MSIE") != -1)
+                alert("Se stai utilizzando Internet Explorer non potrai salvare i dati. Apri questo file con Chrome o Firefox!");
+            //Add this code inside the tag "<body>":
+            //<button type="button" onclick="SaveAs();">Save</button> 
+            //
+            //save file------------------------------------------------->
+            var Download = {
+                click: function(node) {
+                    var ev = document.createEvent("MouseEvents");
+                    ev.initMouseEvent("click", true, false, self, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+                    return node.dispatchEvent(ev);
+                },
+                encode: function(data) {
+                    return 'data:application/octet-stream;base64,' + btoa(unescape(encodeURIComponent(data)));
+                },
+                link: function(data, name) {
+                    var a = document.createElement('a');
+                    a.download = name || self.location.pathname.slice(self.location.pathname.lastIndexOf('/') + 1);
+                    a.href = data || self.location.href;
+                    a.target = "_blank";
+                    a.type = "application/octet-stream";
+                    return a;
+                },
+                save: function(data, name) {
+                    this.click(
+                            this.link(
+                                    this.encode(data),
+                                    name
+                                    )
+                            );
+                }
+            };
+            function twoDigits(d) {
+                if (0 <= d && d < 10)
+                    return "0" + d.toString();
+                if (-10 < d && d < 0)
+                    return "-0" + (-1 * d).toString();
+                return d.toString();
+            }
+            function SaveAs() {
+                SaveData();
+                var str = document.getElementsByTagName("html")[0].innerHTML;
+                var title = document.getElementsByTagName("title")[0].innerHTML.replace(/ /g, "_");
+                var filename = title + "_" + new Date().toISOString().slice(0, 19).replace('T', '_').substr(0, 10) + ".html";
+                Download.save("<!DOCTYPE html>\n<html>\n" + str + "\n</html>", filename);
+            }
+            //save file-------------------------------------------------<
+            function SaveData() {
+                var elements = document.getElementsByTagName("input");
+                for (var i in elements)
+                {
+                    try {
+                        elements[i].setAttribute("value", elements[i].value);
+                        if (elements[i].checked)
+                            elements[i].setAttribute("checked", "checked");
+                        else
+                            elements[i].removeAttribute("checked");
+                    } catch (e) {
+                    }
+                }
+                elements = document.getElementsByTagName("textarea");
+                for (var i in elements)
+                {
+                    try {
+                        elements[i].innerHTML = elements[i].value;
+                    } catch (e) {
+                    }
+                }
+                elements = document.getElementsByTagName("select");
+                for (var i in elements)
+                {
+                    if (elements[i].options) {
+                        var selectedIndex = elements[i].selectedIndex;
+                        for (var o in elements[i].options)
+                        {
+                            try {
+                                elements[i].options[o].removeAttribute("selected");
+                            } catch (e) {
+                            }
+                        }
+                        try {
+                            elements[i].options[selectedIndex].setAttribute("selected", "selected");
+                        } catch (e) {
+                        }
+                    }
+                }
+            }
+        </script>
+
+        <!-- start splxsaveform code -->
+    </head>
+    <body>
+        <div class="page"><h1>Catasto Speleologico Ligure</h1>
+            <h2>scheda da compilare per l'inserimento di una nuova cavità</h2>
+            <p style="background-color: #d0d0d0;padding: 1em;margin: 1em"><em>Compila la scheda e clicca sul pulsante salva su disco. 
+                    Verrà generato un file che potrai inviare ai curatori catastali oppure
+                    modificare e completare in un secondo momento.
+                </em></p>
+            <table width="100%" cellpadding="0" cellspacing="0"><tbody>
+                    <tr><td><div id="pageresults">
+                                <form action="http://www.catastogrotte.net/Navigator-new.html?"  enctype="multipart/form-data" method="post" target='_blank'>
+
+                                    <div class="frm_title">Nome:</div>
+                                    <script type="text/javascript">
+                                        var check_upper = function(input, change)
+                                        {
+                                            var str = input.value.toString();
+                                            if (change)
+                                            {
+                                                str = str.replace(/\s+$/, '');
+                                                str = str.replace(/^\s+/, '');
+                                            }
+                                            str = str.toUpperCase();
+
+                                            input.value = str;
+                                        }
+                                    </script>
+                                    <input type="text" onchange="check_upper(this, true)" title="Nome principale della cavità" size="80" name="NOME" value=""><br>
+                                    <div class="frm_title">Sinonimi:</div>
+                                    <input type="text" onchange="check_upper(this, true)" title="Mettere i sinonimi della grotta separati da ';'" size="80" name="SINON" value=""><br>
+                                    <div class="frm_title">Numero:</div>
+                                    <input type="text" maxlength="255" title="" size="8" name="NUM" value="" readonly="readonly"><br>
+                                    <div class="frm_title">Inserita a catasto da:</div>
+                                    <input type="text" onchange="check_upper(this, true)" title="Mettere Cognome e nome di chi ha inserito a catasto la grotta, vale chi ha fornito i dati della scheda e NON chi la ha inserita sul gestionale." size="30" name="RILEVATORI" value=""><br>
+                                    <div class="frm_title">Regione:</div>
+                                    <input type="text" maxlength="255" title="" size="30" name="REGIONE" value="LI"><br>
+                                    <div class="frm_title">Provincia:</div>
+                                    <select name="PROV">
+                                        <option label="" value="">----</option>
+                                        <option value="GE">GE</option>
+                                        <option value="IM">IM</option>
+                                        <option value="SP">SP</option>
+                                        <option value="SV">SV</option>
+                                    </select>
+                                    <br>
+                                    <div class="frm_title">Comune:</div>
+                                    <select name="COMUNE">
+                                        <option label="" value="">----</option>
+                                        <option value="AIROLE">AIROLE</option>
+                                        <option value="ALASSIO">ALASSIO</option>
+                                        <option value="ALBENGA">ALBENGA</option>
+                                        <option value="ALBISOLA MARINA">ALBISOLA MARINA</option>
+                                        <option value="ALBISOLA SUPERIORE">ALBISOLA SUPERIORE</option>
+                                        <option value="ALTARE">ALTARE</option>
+                                        <option value="AMEGLIA">AMEGLIA</option>
+                                        <option value="ANDORA">ANDORA</option>
+                                        <option value="APRICALE">APRICALE</option>
+                                        <option value="AQUILA DI ARROSCIA">AQUILA DI ARROSCIA</option>
+                                        <option value="ARCOLA">ARCOLA</option>
+                                        <option value="ARENZANO">ARENZANO</option>
+                                        <option value="ARMO">ARMO</option>
+                                        <option value="ARNASCO">ARNASCO</option>
+                                        <option value="AURIGO">AURIGO</option>
+                                        <option value="AVEGNO">AVEGNO</option>
+                                        <option value="BADALUCCO">BADALUCCO</option>
+                                        <option value="BAIARDO">BAIARDO</option>
+                                        <option value="BALESTRINO">BALESTRINO</option>
+                                        <option value="BARDINETO">BARDINETO</option>
+                                        <option value="BARGAGLI">BARGAGLI</option>
+                                        <option value="BERGEGGI">BERGEGGI</option>
+                                        <option value="BEVERINO">BEVERINO</option>
+                                        <option value="BOGLIASCO">BOGLIASCO</option>
+                                        <option value="BOISSANO">BOISSANO</option>
+                                        <option value="BOLANO">BOLANO</option>
+                                        <option value="BONASSOLA">BONASSOLA</option>
+                                        <option value="BORDIGHERA">BORDIGHERA</option>
+                                        <option value="BORGHETTO D'ARROSCIA">BORGHETTO D'ARROSCIA</option>
+                                        <option value="BORGHETTO DI VARA">BORGHETTO DI VARA</option>
+                                        <option value="BORGHETTO SANTO SPIRITO">BORGHETTO SANTO SPIRITO</option>
+                                        <option value="BORGIO VEREZZI">BORGIO VEREZZI</option>
+                                        <option value="BORGOMARO">BORGOMARO</option>
+                                        <option value="BORMIDA">BORMIDA</option>
+                                        <option value="BORZONASCA">BORZONASCA</option>
+                                        <option value="BRUGNATO">BRUGNATO</option>
+                                        <option value="BUSALLA">BUSALLA</option>
+                                        <option value="CAIRO MONTENOTTE">CAIRO MONTENOTTE</option>
+                                        <option value="CALICE AL CORNOVIGLIO">CALICE AL CORNOVIGLIO</option>
+                                        <option value="CALICE LIGURE">CALICE LIGURE</option>
+                                        <option value="CALIZZANO">CALIZZANO</option>
+                                        <option value="CAMOGLI">CAMOGLI</option>
+                                        <option value="CAMPO LIGURE">CAMPO LIGURE</option>
+                                        <option value="CAMPOMORONE">CAMPOMORONE</option>
+                                        <option value="CAMPOROSSO">CAMPOROSSO</option>
+                                        <option value="CARASCO">CARASCO</option>
+                                        <option value="CARAVONICA">CARAVONICA</option>
+                                        <option value="CARCARE">CARCARE</option>
+                                        <option value="CARPASIO">CARPASIO</option>
+                                        <option value="CARRO">CARRO</option>
+                                        <option value="CARRODANO">CARRODANO</option>
+                                        <option value="CASANOVA LERRONE">CASANOVA LERRONE</option>
+                                        <option value="CASARZA LIGURE">CASARZA LIGURE</option>
+                                        <option value="CASELLA">CASELLA</option>
+                                        <option value="CASTELBIANCO">CASTELBIANCO</option>
+                                        <option value="CASTELLARO">CASTELLARO</option>
+                                        <option value="CASTELNUOVO MAGRA">CASTELNUOVO MAGRA</option>
+                                        <option value="CASTELVECCHIO DI ROCCA BARBENA">CASTELVECCHIO DI ROCCA BARBENA</option>
+                                        <option value="CASTEL VITTORIO">CASTEL VITTORIO</option>
+                                        <option value="CASTIGLIONE CHIAVARESE">CASTIGLIONE CHIAVARESE</option>
+                                        <option value="CELLE LIGURE">CELLE LIGURE</option>
+                                        <option value="CENGIO">CENGIO</option>
+                                        <option value="CERANESI">CERANESI</option>
+                                        <option value="CERIALE">CERIALE</option>
+                                        <option value="CERIANA">CERIANA</option>
+                                        <option value="CERVO">CERVO</option>
+                                        <option value="CESIO">CESIO</option>
+                                        <option value="CHIAVARI">CHIAVARI</option>
+                                        <option value="CHIUSANICO">CHIUSANICO</option>
+                                        <option value="CICAGNA">CICAGNA</option>
+                                        <option value="CIPRESSA">CIPRESSA</option>
+                                        <option value="CISANO SUL NEVA">CISANO SUL NEVA</option>
+                                        <option value="CIVEZZA">CIVEZZA</option>
+                                        <option value="COGOLETO">COGOLETO</option>
+                                        <option value="COGORNO">COGORNO</option>
+                                        <option value="COREGLIA LIGURE">COREGLIA LIGURE</option>
+                                        <option value="COSIO DI ARROSCIA">COSIO DI ARROSCIA</option>
+                                        <option value="COSSERIA">COSSERIA</option>
+                                        <option value="COSTARAINERA">COSTARAINERA</option>
+                                        <option value="CROCEFIESCHI">CROCEFIESCHI</option>
+                                        <option value="DAVAGNA">DAVAGNA</option>
+                                        <option value="DEGO">DEGO</option>
+                                        <option value="DEIVA MARINA">DEIVA MARINA</option>
+                                        <option value="DIANO ARENTINO">DIANO ARENTINO</option>
+                                        <option value="DIANO CASTELLO">DIANO CASTELLO</option>
+                                        <option value="DIANO MARINA">DIANO MARINA</option>
+                                        <option value="DIANO SAN PIETRO">DIANO SAN PIETRO</option>
+                                        <option value="DOLCEACQUA">DOLCEACQUA</option>
+                                        <option value="DOLCEDO">DOLCEDO</option>
+                                        <option value="ERLI">ERLI</option>
+                                        <option value="FASCIA">FASCIA</option>
+                                        <option value="FAVALE DI MALVARO">FAVALE DI MALVARO</option>
+                                        <option value="FINALE LIGURE">FINALE LIGURE</option>
+                                        <option value="FOLLO">FOLLO</option>
+                                        <option value="FONTANIGORDA">FONTANIGORDA</option>
+                                        <option value="FRAMURA">FRAMURA</option>
+                                        <option value="GARLENDA">GARLENDA</option>
+                                        <option value="GENOVA">GENOVA</option>
+                                        <option value="GIUSTENICE">GIUSTENICE</option>
+                                        <option value="GIUSVALLA">GIUSVALLA</option>
+                                        <option value="GORRETO">GORRETO</option>
+                                        <option value="IMPERIA">IMPERIA</option>
+                                        <option value="ISOLABONA">ISOLABONA</option>
+                                        <option value="ISOLA DEL CANTONE">ISOLA DEL CANTONE</option>
+                                        <option value="LAIGUEGLIA">LAIGUEGLIA</option>
+                                        <option value="LA SPEZIA">LA SPEZIA</option>
+                                        <option value="LAVAGNA">LAVAGNA</option>
+                                        <option value="LEIVI">LEIVI</option>
+                                        <option value="LERICI">LERICI</option>
+                                        <option value="LEVANTO">LEVANTO</option>
+                                        <option value="LOANO">LOANO</option>
+                                        <option value="LORSICA">LORSICA</option>
+                                        <option value="LUCINASCO">LUCINASCO</option>
+                                        <option value="LUMARZO">LUMARZO</option>
+                                        <option value="MAGLIOLO">MAGLIOLO</option>
+                                        <option value="MAISSANA">MAISSANA</option>
+                                        <option value="MALLARE">MALLARE</option>
+                                        <option value="MASONE">MASONE</option>
+                                        <option value="MASSIMINO">MASSIMINO</option>
+                                        <option value="MELE">MELE</option>
+                                        <option value="MENDATICA">MENDATICA</option>
+                                        <option value="MEZZANEGO">MEZZANEGO</option>
+                                        <option value="MIGNANEGO">MIGNANEGO</option>
+                                        <option value="MILLESIMO">MILLESIMO</option>
+                                        <option value="MIOGLIA">MIOGLIA</option>
+                                        <option value="MOCONESI">MOCONESI</option>
+                                        <option value="MOLINI DI TRIORA">MOLINI DI TRIORA</option>
+                                        <option value="MONEGLIA">MONEGLIA</option>
+                                        <option value="MONTALTO LIGURE">MONTALTO LIGURE</option>
+                                        <option value="MONTEBRUNO">MONTEBRUNO</option>
+                                        <option value="MONTEGROSSO PIAN LATTE">MONTEGROSSO PIAN LATTE</option>
+                                        <option value="MONTEROSSO AL MARE">MONTEROSSO AL MARE</option>
+                                        <option value="MONTOGGIO">MONTOGGIO</option>
+                                        <option value="MURIALDO">MURIALDO</option>
+                                        <option value="NASINO">NASINO</option>
+                                        <option value="NE">NE</option>
+                                        <option value="NEIRONE">NEIRONE</option>
+                                        <option value="NOLI">NOLI</option>
+                                        <option value="OLIVETTA SAN MICHELE">OLIVETTA SAN MICHELE</option>
+                                        <option value="ONZO">ONZO</option>
+                                        <option value="ORCO FEGLINO">ORCO FEGLINO</option>
+                                        <option value="ORERO">ORERO</option>
+                                        <option value="ORTONOVO">ORTONOVO</option>
+                                        <option value="ORTOVERO">ORTOVERO</option>
+                                        <option value="OSIGLIA">OSIGLIA</option>
+                                        <option value="OSPEDALETTI">OSPEDALETTI</option>
+                                        <option value="PALLARE">PALLARE</option>
+                                        <option value="PERINALDO">PERINALDO</option>
+                                        <option value="PIANA CRIXIA">PIANA CRIXIA</option>
+                                        <option value="PIETRABRUNA">PIETRABRUNA</option>
+                                        <option value="PIETRA LIGURE">PIETRA LIGURE</option>
+                                        <option value="PIEVE DI TECO">PIEVE DI TECO</option>
+                                        <option value="PIEVE LIGURE">PIEVE LIGURE</option>
+                                        <option value="PIGNA">PIGNA</option>
+                                        <option value="PIGNONE">PIGNONE</option>
+                                        <option value="PLODIO">PLODIO</option>
+                                        <option value="POMPEIANA">POMPEIANA</option>
+                                        <option value="PONTEDASSIO">PONTEDASSIO</option>
+                                        <option value="PONTINVREA">PONTINVREA</option>
+                                        <option value="PORNASSIO">PORNASSIO</option>
+                                        <option value="PORTOFINO">PORTOFINO</option>
+                                        <option value="PORTOVENERE">PORTOVENERE</option>
+                                        <option value="PRELA'">PRELA'</option>
+                                        <option value="PROPATA">PROPATA</option>
+                                        <option value="QUILIANO">QUILIANO</option>
+                                        <option value="RANZO">RANZO</option>
+                                        <option value="RAPALLO">RAPALLO</option>
+                                        <option value="RECCO">RECCO</option>
+                                        <option value="REZZO">REZZO</option>
+                                        <option value="REZZOAGLIO">REZZOAGLIO</option>
+                                        <option value="RIALTO">RIALTO</option>
+                                        <option value="RICCO' DEL GOLFO DI SPEZIA">RICCO' DEL GOLFO DI SPEZIA</option>
+                                        <option value="RIOMAGGIORE">RIOMAGGIORE</option>
+                                        <option value="RIVA LIGURE">RIVA LIGURE</option>
+                                        <option value="ROCCAVIGNALE">ROCCAVIGNALE</option>
+                                        <option value="ROCCHETTA DI VARA">ROCCHETTA DI VARA</option>
+                                        <option value="ROCCHETTA NERVINA">ROCCHETTA NERVINA</option>
+                                        <option value="RONCO SCRIVIA">RONCO SCRIVIA</option>
+                                        <option value="RONDANINA">RONDANINA</option>
+                                        <option value="ROSSIGLIONE">ROSSIGLIONE</option>
+                                        <option value="ROVEGNO">ROVEGNO</option>
+                                        <option value="SAN BARTOLOMEO AL MARE">SAN BARTOLOMEO AL MARE</option>
+                                        <option value="SAN BIAGIO DELLA CIMA">SAN BIAGIO DELLA CIMA</option>
+                                        <option value="SAN COLOMBANO CERTENOLI">SAN COLOMBANO CERTENOLI</option>
+                                        <option value="SAN LORENZO AL MARE">SAN LORENZO AL MARE</option>
+                                        <option value="SANREMO">SANREMO</option>
+                                        <option value="SANT'OLCESE">SANT'OLCESE</option>
+                                        <option value="SANTA MARGHERITA LIGURE">SANTA MARGHERITA LIGURE</option>
+                                        <option value="SANTO STEFANO AL MARE">SANTO STEFANO AL MARE</option>
+                                        <option value="SANTO STEFANO D'AVETO">SANTO STEFANO D'AVETO</option>
+                                        <option value="SANTO STEFANO DI MAGRA">SANTO STEFANO DI MAGRA</option>
+                                        <option value="SARZANA">SARZANA</option>
+                                        <option value="SASSELLO">SASSELLO</option>
+                                        <option value="SAVIGNONE">SAVIGNONE</option>
+                                        <option value="SAVONA">SAVONA</option>
+                                        <option value="SEBORGA">SEBORGA</option>
+                                        <option value="SERRA RICCO'">SERRA RICCO'</option>
+                                        <option value="SESTA GODANO">SESTA GODANO</option>
+                                        <option value="SESTRI LEVANTE">SESTRI LEVANTE</option>
+                                        <option value="SOLDANO">SOLDANO</option>
+                                        <option value="SORI">SORI</option>
+                                        <option value="SPOTORNO">SPOTORNO</option>
+                                        <option value="STELLA">STELLA</option>
+                                        <option value="STELLANELLO">STELLANELLO</option>
+                                        <option value="TAGGIA">TAGGIA</option>
+                                        <option value="TERZORIO">TERZORIO</option>
+                                        <option value="TESTICO">TESTICO</option>
+                                        <option value="TIGLIETO">TIGLIETO</option>
+                                        <option value="TOIRANO">TOIRANO</option>
+                                        <option value="TORRIGLIA">TORRIGLIA</option>
+                                        <option value="TOVO SAN GIACOMO">TOVO SAN GIACOMO</option>
+                                        <option value="TRIBOGNA">TRIBOGNA</option>
+                                        <option value="TRIORA">TRIORA</option>
+                                        <option value="URBE">URBE</option>
+                                        <option value="USCIO">USCIO</option>
+                                        <option value="VADO LIGURE">VADO LIGURE</option>
+                                        <option value="VALBREVENNA">VALBREVENNA</option>
+                                        <option value="VALLEBONA">VALLEBONA</option>
+                                        <option value="VALLECROSIA">VALLECROSIA</option>
+                                        <option value="VARAZZE">VARAZZE</option>
+                                        <option value="VARESE LIGURE">VARESE LIGURE</option>
+                                        <option value="VASIA">VASIA</option>
+                                        <option value="VENDONE">VENDONE</option>
+                                        <option value="VENTIMIGLIA">VENTIMIGLIA</option>
+                                        <option value="VERNAZZA">VERNAZZA</option>
+                                        <option value="VESSALICO">VESSALICO</option>
+                                        <option value="VEZZANO LIGURE">VEZZANO LIGURE</option>
+                                        <option value="VEZZI PORTIO">VEZZI PORTIO</option>
+                                        <option value="VILLA FARALDI">VILLA FARALDI</option>
+                                        <option value="VILLANOVA D'ALBENGA">VILLANOVA D'ALBENGA</option>
+                                        <option value="VOBBIA">VOBBIA</option>
+                                        <option value="ZIGNAGO">ZIGNAGO</option>
+                                        <option value="ZOAGLI">ZOAGLI</option>
+                                        <option value="ZUCCARELLO">ZUCCARELLO</option>
+                                    </select>
+                                    <br>
+
+                                    <div class="frm_title">Località:</div>
+                                    <input type="text" onchange="check_upper(this, true)" title="" size="30" name="LOCAL" value=""><br>
+
+                                    <div class="frm_title">Monte:</div>
+                                    <input type="text" onchange="check_upper(this, true)" title="" size="30" name="MONTE" value=""><br>
+
+                                    <div class="frm_title">Valle:</div>
+                                    <input type="text" onchange="check_upper(this, true)" title="" size="30" name="VALLE" value=""><br>
+
+                                    <div class="frm_title">Area carsica:</div>
+
+                                    <script type="text/javascript">
+                                        var synccheck94367552e7bd23cbc09_ACARCOD = function()
+                                        {
+                                            var Obj = document.getElementById('right_94367552e7bd23cbc09');
+                                            var str = '';
+                                            var sep = '';
+                                            if (Obj.options) {
+                                                var listOptions = Obj.getElementsByTagName('option');
+                                                for (var i in listOptions)
+                                                {
+                                                    if (listOptions[i] !== undefined && listOptions[i].value !== undefined)
+                                                    {
+                                                        str += sep + listOptions[i].value;
+                                                        sep = ',';
+                                                    }
+                                                }
+                                            }
+                                            document.getElementById('xmldbvalue94367552e7bd23cbc09_ACARCOD').value = str;
+                                        };
+                                        var toright94367552e7bd23cbc09_ACARCOD = function()
+                                        {
+                                            var Obj = document.getElementById('left_94367552e7bd23cbc09');
+                                            var selIndex = Obj.selectedIndex;
+                                            try {
+                                                var selObj = Obj.options[selIndex];
+                                            } catch (e) {
+                                                return;
+                                            }
+                                            var newObj = selObj.cloneNode(true);
+                                            document.getElementById('right_94367552e7bd23cbc09').appendChild(newObj);
+                                            Obj.removeChild(selObj);
+                                            synccheck94367552e7bd23cbc09_ACARCOD();
+                                        };
+                                        var toleft94367552e7bd23cbc09_ACARCOD = function()
+                                        {
+                                            var Obj = document.getElementById('right_94367552e7bd23cbc09');
+
+                                            var selIndex = Obj.selectedIndex;
+                                            try {
+                                                var selObj = Obj.options[selIndex];
+                                            } catch (e) {
+                                                return;
+                                            }
+                                            var newObj = selObj.cloneNode(true);
+                                            document.getElementById('left_94367552e7bd23cbc09').appendChild(newObj);
+                                            Obj.removeChild(selObj);
+                                            synccheck94367552e7bd23cbc09_ACARCOD();
+
+                                        };
+                                    </script>
+                                    <table cellspacing="0" cellpadding="0" border="0" style="padding:0px;"><tbody><tr><td style="padding:0px;"><select style="width:150px;" id="left_94367552e7bd23cbc09" size="5"><option value="GE33" title="" name="__xmldb_multiselect_ACARCOD">GE33 MONTE GAZZO</option> <option value="GE34" title="" name="__xmldb_multiselect_ACARCOD">GE34 ALTA VAL CHIARAVAGNA</option> <option value="GE35" title="" name="__xmldb_multiselect_ACARCOD">GE35 ISOVERDE</option> <option value="GE36" title="" name="__xmldb_multiselect_ACARCOD">GE36 ALTA VAL GRAVEGLIA</option> <option value="SP37" title="" name="__xmldb_multiselect_ACARCOD">SP37 MONTEMARCELLO</option> <option value="SP38" title="" name="__xmldb_multiselect_ACARCOD">SP38 LAMA DI LA SPEZIA</option> <option value="SP39" title="" name="__xmldb_multiselect_ACARCOD">SP39 MONTE VERRUGA</option> <option value="IM1" title="" name="__xmldb_multiselect_ACARCOD">IM1 MONTE GRAMMONDO</option> <option value="IM2" title="" name="__xmldb_multiselect_ACARCOD">IM2 MAGLIOCCA</option> <option 
+                                                            value="IM3" title="" name="__xmldb_multiselect_ACARCOD">IM3 ROVERINO - CIAIXE</option> <option value="IM4" title="" name="__xmldb_multiselect_ACARCOD">IM4 BARBAIRA</option> <option value="IM5" title="" name="__xmldb_multiselect_ACARCOD">IM5 TORAGGIO</option> <option value="IM6" title="" name="__xmldb_multiselect_ACARCOD">IM6 PIETRAVECCHIA - MELOSA</option> <option value="IM7" title="" name="__xmldb_multiselect_ACARCOD">IM7 ALTA VALLE ARGENTINA</option> <option value="IM8" title="" name="__xmldb_multiselect_ACARCOD">IM8 PREARBA</option> <option value="IM9" title="" name="__xmldb_multiselect_ACARCOD">IM9 GUARDIABELLA</option> <option value="IM10" title="" name="__xmldb_multiselect_ACARCOD">IM10 PIANCAVALLO - ARMASSE</option> <option value="IM11" title="" name="__xmldb_multiselect_ACARCOD">IM11 MONTE DEI CANCELLI - ROCCA FERRAIRA</option> <option value="IM12" title="" name="__xmldb_multiselect_ACARCOD">IM12 PENNAVAIRA - ROCCA DEL BOZZARO</option> <option value="SV13" title="" name="__xmldb_multiselect_ACARCOD"
+                                                            >SV13 BERGEGGI</option> <option value="SV14" title="" name="__xmldb_multiselect_ACARCOD">SV14 STELLA CORONA</option> <option value="SV15" title="" name="__xmldb_multiselect_ACARCOD">SV15 ADELASIA</option> <option value="SV16" title="" name="__xmldb_multiselect_ACARCOD">SV16 PALLARE</option> <option value="SV17" title="" name="__xmldb_multiselect_ACARCOD">SV17 BRIC TANA</option> <option value="SV18" title="" name="__xmldb_multiselect_ACARCOD">SV18 VALLE DEI TRE RE</option> <option value="SV19" title="" name="__xmldb_multiselect_ACARCOD">SV19 GIOVETTI</option> <option value="SV20" title="" name="__xmldb_multiselect_ACARCOD">SV20 BARDINETO</option> <option value="SV21" title="" name="__xmldb_multiselect_ACARCOD">SV21 MONTENERO</option> <option value="SV22" title="" name="__xmldb_multiselect_ACARCOD">SV22 RAVINAZZO</option> <option value="SV23" title="" name="__xmldb_multiselect_ACARCOD">SV23 MONTE ACUTO - PICARO</option> <option value="SV24" title="" name="__xmldb_multiselect_ACARCOD">SV24 MONTE CARMO DI LOANO</
+                                                            option> <option value="SV25" title="" name="__xmldb_multiselect_ACARCOD">SV25 BRIC TAMPA</option> <option value="SV26" title="" name="__xmldb_multiselect_ACARCOD">SV26 MAGLIOLO</option> <option value="SV27" title="" name="__xmldb_multiselect_ACARCOD">SV27 ROCCA DELLE FENE</option> <option value="SV28" title="" name="__xmldb_multiselect_ACARCOD">SV28 MONTE GROSSO</option> <option value="SV29" title="" name="__xmldb_multiselect_ACARCOD">SV29 BORGIO-CAPRAZOPPA</option> <option value="SV30" title="" name="__xmldb_multiselect_ACARCOD">SV30 CARPANEA - ROCCA DI PERTI</option> <option value="SV31" title="" name="__xmldb_multiselect_ACARCOD">SV31 MANIE - CAPO NOLI</option> <option value="SV32" title="" name="__xmldb_multiselect_ACARCOD">SV32 SAN BERNARDINO - ORCO</option> <option value="CG_GE1" title="" name="__xmldb_multiselect_ACARCOD">CG_GE1 MONTE ANTOLA</option> <option value="CG_GE2" title="" name="__xmldb_multiselect_ACARCOD">CG_GE2 MONTE DI PORTOFINO</option> </select></td><td style="padding:0px;">
+                                                    <button  type="button"
+                                                             style="
+                                                             cursor:pointer" onclick="toleft94367552e7bd23cbc09_ACARCOD()" >&lt;</button><br>
+                                                    <button type="button" style="cursor:pointer" 
+                                                            onclick="toright94367552e7bd23cbc09_ACARCOD()" 
+                                                            alt="" >
+                                                        &gt;</button></td><td style="padding:0px;"><select style="width:150px;" id="right_94367552e7bd23cbc09" size="5"></select></td><td></td></tr></tbody></table><input type="hidden" id="xmldbvalue94367552e7bd23cbc09_ACARCOD" name="ACARCOD" value=""><script type="text/javascript">setTimeout("synccheck94367552e7bd23cbc09_ACARCOD()", 0);</script><br>
+
+                                    <fieldset class="frm_group"><legend>Terreno geologico</legend>
+
+                                        <div class="frm_title">Formazione:</div>
+                                        <select name="FMCOD">
+                                            <option label="" value="">----</option>
+                                            <option value="ABE">ABE ALBERESE</option>
+                                            <option value="ALE">ALE GRUPPO DELL'ALBERESE</option>
+                                            <option value="ALN">ALN FORMAZIONE DI ALBENGA</option>
+                                            <option value="ALS">ALS GNEISS DI ALBISOLA</option>
+                                            <option value="ANT">ANT FORMAZIONE DI ANTOGNOLA</option>
+                                            <option value="APA">APA ARGILLE A PALOMBINI</option>
+                                            <option value="ARN">ARN RADIOLARITI DI ARNASCO</option>
+                                            <option value="ARZ">ARZ CRISTALLINO DI ARENZANO</option>
+                                            <option value="AVE">AVE FORMAZIONE DELLA VAL D'AVETO</option>
+                                            <option value="BEI">BEI OFIOLITI DEL MONTE BEIGUA</option>
+                                            <option value="CAL">CAL CALCARI A CALPIONELLE</option>
+                                            <option value="CAO">CAO CALCARI DI MONTE CAIO</option>
+                                            <option value="CCA">CCA CALCARE CAVERNOSO</option>
+                                            <option value="CMV">CMV CONGLOMERATI DI MONTE VILLA</option>
+                                            <option value="COG">COG DOLOMIE DI COGOLEDO</option>
+                                            <option value="CRA">CRA BRECCE DELLA COSTA DI CRAVARA</option>
+                                            <option value="CSU">CSU ARENARIE DI CASANOVA</option>
+                                            <option value="CVE">CVE CALCARE DI VERZI</option>
+                                            <option value="DMA">DMA DOLOMIE DI MONTE ARENA</option>
+                                            <option value="DPR">DPR DOLOMIA PRINCIPALE</option>
+                                            <option value="DSD">DSD FORMAZIONE DEI DIASPRI</option>
+                                            <option value="DSG">DSG DIASPRI, SCISTI DIASPRIGNI</option>
+                                            <option value="DUG">DUG DOLOMIE VACUOLARI E GESSI</option>
+                                            <option value="ELM">ELM FLYSCH AD ELMINTOIDI</option>
+                                            <option value="EZE">EZE FORMAZIONE DI EZE</option>
+                                            <option value="FAN">FAN FORMAZIONE DEL MONTE ANTOLA</option>
+                                            <option value="FGA">FGA FORMAZIONE DEI GALESTRI</option>
+                                            <option value="FII">FII COMPLESSO DI BASE DEL CALCARE DI FINALE LIGURE</option>
+                                            <option value="FIN">FIN CALCARE DI FINALE LIGURE</option>
+                                            <option value="FLI">FLI CALCARI DI FIGLINE</option>
+                                            <option value="FLY">FLY FLYISCH DEL MONTE ANTOLA</option>
+                                            <option value="FMU">FMU FORMAZIONE DI MURIALDO</option>
+                                            <option value="GIC">GIC ARGILLE A PALOMBINI DEL LAGO DI GIACOPIANE</option>
+                                            <option value="GLL">GLL CALCARI DI GALLANETO</option>
+                                            <option value="GRR">GRR SCISTI DI GORRA</option>
+                                            <option value="GSA">GSA GRANITI DI SANDA</option>
+                                            <option value="GTT">GTT ARGILLITI DI GIARIETTE</option>
+                                            <option value="IND">IND INDIFFERENZIATO</option>
+                                            <option value="ISO">ISO DOLOMIA DI ISOVERDE</option>
+                                            <option value="LET">LET GRANITI DEL TORRENTE LETIMBRO</option>
+                                            <option value="LIV">LIV CALCARI DI ROCCA LIVERNA</option>
+                                            <option value="LLV">LLV LEMBO DI CELLE LIGURE-VARAZZE</option>
+                                            <option value="LSG">LSG LEMBO DI SANTA GIUSTINA</option>
+                                            <option value="LVG">LVG FORMAZIONE DI VAL LAVAGNA</option>
+                                            <option value="MAC">MAC MACIGNO</option>
+                                            <option value="MCH">MCH MACIGNO DEL CHIANTI</option>
+                                            <option value="MEO">MEO CALCARI DI MENOSIO</option>
+                                            <option value="MGG">MGG ARGILLITI DI MONTOGGIO</option>
+                                            <option value="MGL">MGL BRECCE DI MONTE GALLERO</option>
+                                            <option value="MIG">MIG ARGILLITI DI MIGNANEGO</option>
+                                            <option value="MOE">MOE FORMAZIONE DI MONESIGLIO</option>
+                                            <option value="MOG">MOG PELITI DI MOGLIO</option>
+                                            <option value="MOR">MOR FORMAZIONE DI MOLARE</option>
+                                            <option value="MTE">MTE ARGILLITI DI MONTANESI</option>
+                                            <option value="MTG">MTG FORMAZIONE DI MONTOGGIO</option>
+                                            <option value="MUG">MUG MACIGNO DEL MUGELLO</option>
+                                            <option value="MVE">MVE ARGILLE A PALOMBINI DI MONTE VERI</option>
+                                            <option value="NAV">NAV CALCARI DI RIO DI NAVA</option>
+                                            <option value="NOT">NOT SERIE DI MONTENOTTE</option>
+                                            <option value="NUC">NUC MIGMATITI DI NUCETTO</option>
+                                            <option value="NUM">NUM CALCARI A NUMMULITI</option>
+                                            <option value="OF">OF OFICALCI</option>
+                                            <option value="OLL">OLL FORMAZIONE DI OLLANO</option>
+                                            <option value="ORV">ORV ARGILLE DI ORTOVERO</option>
+                                            <option value="OSI">OSI PORFIDI DI OSIGLIA</option>
+                                            <option value="OTO">OTO CALCARI DI OTTONE</option>
+                                            <option value="PAB">PAB ARGILLE A PALOMBINI DEL PASSO DELLA BOCCHETTA</option>
+                                            <option value="PAG">PAG ARGILLITI DI PAGLIARO</option>
+                                            <option value="PDF">PDF PIETRA DI FINALE</option>
+                                            <option value="PDM">PDM PORFIROIDI DEL MELOGNO</option>
+                                            <option value="PEN">PEN FORMAZIONE DI MONTE PENICE</option>
+                                            <option value="PNS">PNS FORMAZIONE DI MONTE PIANOSA</option>
+                                            <option value="POR">POR CONGLOMERATO DI PORTOFINO</option>
+                                            <option value="QFA">QFA QUARZITI DI FOSSO ANGASSINO</option>
+                                            <option value="QMB">QMB QUARZITI DI MONTE BIGNONE</option>
+                                            <option value="QPN">QPN QUARZITI DI PONTE DI NAVA</option>
+                                            <option value="RCC">RCC FORMAZIONE DI ROCCHETTA</option>
+                                            <option value="RIO">RIO MARNE DI RIGOROSO</option>
+                                            <option value="ROC">ROC FORMAZIONE DI RONCO</option>
+                                            <option value="RPR">RPR DOLOMIA DI ROCCA PRIONE</option>
+                                            <option value="SAS">SAS FORMAZIONE DEL SANTUARIO DI SAVONA</option>
+                                            <option value="SAV">SAV  CONGLOMERATI DI SAVIGNONE</option>
+                                            <option value="SBA">SBA FORMAZIONE DI SAN BARTOLOMEO</option>
+                                            <option value="SOP">SOP MARNE DI SOPRALACROCE</option>
+                                            <option value="SOT">SOT CALCARI DI MONTE SOTTA</option>
+                                            <option value="SPM">SPM DOLOMIE DI SAN PIETRO DEI MONTI</option>
+                                            <option value="SPN">SPN ANFIBIOLITI DI MONTE SPINARDA</option>
+                                            <option value="SPP">SPP SCAGLIA APPENNINICA</option>
+                                            <option value="SSS">SSS LEMBO DI SASSELLO</option>
+                                            <option value="STO">STO SCAGLIA TOSCANA</option>
+                                            <option value="TAR">TAR CALCARI DI VAL TANARELLO</option>
+                                            <option value="TES">TES FORMAZIONE DI TESTICO</option>
+                                            <option value="TOB">TOB FORMAZIONE DI TORBI</option>
+                                            <option value="TUR">TUR CALCESCISTI DEL TURCHINO</option>
+                                            <option value="UBA">UBA CALCARI DI UBAGA</option>
+                                            <option value="VBR">VBR VERRUCANO BRIANZONESE</option>
+                                            <option value="VEV">VEV CALCARI DI VERAVO</option>
+                                            <option value="VLT">VLT GRUPPO DEI CALCESCISTI CON PIETRE VERDI DI VOLTRI</option>
+                                            <option value="VRR">VRR VERRUCANO APPENNINICO</option>
+                                            <option value="VSC">VSC ARENARIE DI VAL SCRIVIA</option>
+                                            <option value="ZAT">ZAT ARENARIE DI MONTE ZATTA</option>
+                                        </select>
+                                        <br>
+
+                                        <div class="frm_title">Età:</div>
+                                        <select name="AGE">
+                                            <option label="" value="">----</option>
+                                            <option value="Archeozoico">Archeozoico</option>
+                                            <option value="Cambriano">Cambriano</option>
+                                            <option value="Carbonifero">Carbonifero</option>
+                                            <option value="Carbonifero Inferiore">Carbonifero Inferiore</option>
+                                            <option value="Carbonifero Superiore">Carbonifero Superiore</option>
+                                            <option value="Cenozoico Superiore">Cenozoico Superiore</option>
+                                            <option value="Cretaceo">Cretaceo</option>
+                                            <option value="Cretaceo Inf. (Albiano)">Cretaceo Inf. (Albiano)</option>
+                                            <option value="Cretaceo Inf. (Aptiano)">Cretaceo Inf. (Aptiano)</option>
+                                            <option value="Cretaceo Inf. (Barremiano)">Cretaceo Inf. (Barremiano)</option>
+                                            <option value="Cretaceo Inf. (Berriasiano)">Cretaceo Inf. (Berriasiano)</option>
+                                            <option value="Cretaceo Inf. (Hauteriviano)">Cretaceo Inf. (Hauteriviano)</option>
+                                            <option value="Cretaceo Inf. (Neocomiano)">Cretaceo Inf. (Neocomiano)</option>
+                                            <option value="Cretaceo Inf. (Valanginiano)">Cretaceo Inf. (Valanginiano)</option>
+                                            <option value="Cretaceo Inferiore">Cretaceo Inferiore</option>
+                                            <option value="Cretaceo Sup. (Campaniano)">Cretaceo Sup. (Campaniano)</option>
+                                            <option value="Cretaceo Sup. (Cenomaniano)">Cretaceo Sup. (Cenomaniano)</option>
+                                            <option value="Cretaceo Sup. (Coniaciano)">Cretaceo Sup. (Coniaciano)</option>
+                                            <option value="Cretaceo Sup. (Maastrichtiano)">Cretaceo Sup. (Maastrichtiano)</option>
+                                            <option value="Cretaceo Sup. (Santoniano)">Cretaceo Sup. (Santoniano)</option>
+                                            <option value="Cretaceo Sup. (Senoniano)">Cretaceo Sup. (Senoniano)</option>
+                                            <option value="Cretaceo Sup. (Turoniano)">Cretaceo Sup. (Turoniano)</option>
+                                            <option value="Cretaceo Superiore">Cretaceo Superiore</option>
+                                            <option value="Devoniano">Devoniano</option>
+                                            <option value="Devoniano Inferiore">Devoniano Inferiore</option>
+                                            <option value="Devoniano Medio">Devoniano Medio</option>
+                                            <option value="Devoniano Superiore">Devoniano Superiore</option>
+                                            <option value="Eocene">Eocene</option>
+                                            <option value="Eocene (Cuisiano)">Eocene (Cuisiano)</option>
+                                            <option value="Eocene (Luteziano)">Eocene (Luteziano)</option>
+                                            <option value="Eocene (Priaboniano)">Eocene (Priaboniano)</option>
+                                            <option value="Eocene Inferiore">Eocene Inferiore</option>
+                                            <option value="Giurassico">Giurassico</option>
+                                            <option value="Giurassico Inf. (Carixiano)">Giurassico Inf. (Carixiano)</option>
+                                            <option value="Giurassico Inf. (Domeriano)">Giurassico Inf. (Domeriano)</option>
+                                            <option value="Giurassico Inf. (Hettangiano)">Giurassico Inf. (Hettangiano)</option>
+                                            <option value="Giurassico Inf. (Pliensbachiano)">Giurassico Inf. (Pliensbachiano)</option>
+                                            <option value="Giurassico Inf. (Sinemuriano)">Giurassico Inf. (Sinemuriano)</option>
+                                            <option value="Giurassico Inf. (Toarciano)">Giurassico Inf. (Toarciano)</option>
+                                            <option value="Giurassico Inferiore">Giurassico Inferiore</option>
+                                            <option value="Giurassico Med. (Aaleniano)">Giurassico Med. (Aaleniano)</option>
+                                            <option value="Giurassico Med. (Bajociano)">Giurassico Med. (Bajociano)</option>
+                                            <option value="Giurassico Med. (Batoniano)">Giurassico Med. (Batoniano)</option>
+                                            <option value="Giurassico Med. (Calloviano)">Giurassico Med. (Calloviano)</option>
+                                            <option value="Giurassico Medio">Giurassico Medio</option>
+                                            <option value="Giurassico Sup. (Kimmeridgiano)">Giurassico Sup. (Kimmeridgiano)</option>
+                                            <option value="Giurassico Sup. (Oxfordiano)">Giurassico Sup. (Oxfordiano)</option>
+                                            <option value="Giurassico Sup. (Titoniano)">Giurassico Sup. (Titoniano)</option>
+                                            <option value="Giurassico Superiore">Giurassico Superiore</option>
+                                            <option value="Miocene">Miocene</option>
+                                            <option value="Miocene (Aquitaniano)">Miocene (Aquitaniano)</option>
+                                            <option value="Miocene (Burdigaliano)">Miocene (Burdigaliano)</option>
+                                            <option value="Miocene (Langhiano)">Miocene (Langhiano)</option>
+                                            <option value="Miocene (Messiniano)">Miocene (Messiniano)</option>
+                                            <option value="Miocene (Serravalliano)">Miocene (Serravalliano)</option>
+                                            <option value="Miocene (Tortoniano)">Miocene (Tortoniano)</option>
+                                            <option value="Neogene">Neogene</option>
+                                            <option value="Oligocene">Oligocene</option>
+                                            <option value="Oligocene (Cattiano)">Oligocene (Cattiano)</option>
+                                            <option value="Oligocene (Lattorfiano)">Oligocene (Lattorfiano)</option>
+                                            <option value="Oligocene (Rupeliano)">Oligocene (Rupeliano)</option>
+                                            <option value="Oligocene (Sannoisiano)">Oligocene (Sannoisiano)</option>
+                                            <option value="Oligocene (Stampiano)">Oligocene (Stampiano)</option>
+                                            <option value="Olocene">Olocene</option>
+                                            <option value="Ordoviciano">Ordoviciano</option>
+                                            <option value="Ordoviciano Inferiore">Ordoviciano Inferiore</option>
+                                            <option value="Ordoviciano Superiore">Ordoviciano Superiore</option>
+                                            <option value="Paleocene">Paleocene</option>
+                                            <option value="Paleocene (Daniano)">Paleocene (Daniano)</option>
+                                            <option value="Paleocene (Ilerdiano)">Paleocene (Ilerdiano)</option>
+                                            <option value="Paleocene (Montiano)">Paleocene (Montiano)</option>
+                                            <option value="Paleocene (Thanetiano)">Paleocene (Thanetiano)</option>
+                                            <option value="Paleogene">Paleogene</option>
+                                            <option value="Paleozoico">Paleozoico</option>
+                                            <option value="Permiano">Permiano</option>
+                                            <option value="Permiano Inferiore">Permiano Inferiore</option>
+                                            <option value="Permiano Superiore">Permiano Superiore</option>
+                                            <option value="Pleistocene">Pleistocene</option>
+                                            <option value="Pleistocene (Calabriano)">Pleistocene (Calabriano)</option>
+                                            <option value="Pleistocene (Emiliano)">Pleistocene (Emiliano)</option>
+                                            <option value="Pleistocene (Milazziano)">Pleistocene (Milazziano)</option>
+                                            <option value="Pleistocene (Siciliano)">Pleistocene (Siciliano)</option>
+                                            <option value="Pleistocene (Tirreniano)">Pleistocene (Tirreniano)</option>
+                                            <option value="Pleistocene Inferiore">Pleistocene Inferiore</option>
+                                            <option value="Pleistocene Medio">Pleistocene Medio</option>
+                                            <option value="Pleistocene Superiore">Pleistocene Superiore</option>
+                                            <option value="Pliocene">Pliocene</option>
+                                            <option value="Pliocene (Piacenziano)">Pliocene (Piacenziano)</option>
+                                            <option value="Pliocene (Tabianiano)">Pliocene (Tabianiano)</option>
+                                            <option value="Siluriano">Siluriano</option>
+                                            <option value="Siluriano Inferiore">Siluriano Inferiore</option>
+                                            <option value="Siluriano Superiore">Siluriano Superiore</option>
+                                            <option value="Triassico">Triassico</option>
+                                            <option value="Triassico Inf. (Scitico)">Triassico Inf. (Scitico)</option>
+                                            <option value="Triassico Med. (Anisico)">Triassico Med. (Anisico)</option>
+                                            <option value="Triassico Med. (Ladinico)">Triassico Med. (Ladinico)</option>
+                                            <option value="Triassico Medio">Triassico Medio</option>
+                                            <option value="Triassico Sup. (Carnico)">Triassico Sup. (Carnico)</option>
+                                            <option value="Triassico Sup. (Norico)">Triassico Sup. (Norico)</option>
+                                            <option value="Triassico Sup. (Retico)">Triassico Sup. (Retico)</option>
+                                            <option value="Triassico Superiore">Triassico Superiore</option>
+                                        </select>
+                                        <br>
+
+                                    </fieldset><br>
+
+
+                                    <fieldset class="frm_group"><legend>Dimensioni cavità</legend>
+
+                                        <div class="frm_title">Sviluppo reale:</div>
+                                        <script type="text/javascript">
+                                            var check_num = function(input, change)
+                                            {
+                                                var str = input.value.toString();
+                                                str = str.replace(/\s+$/, '');
+                                                str = str.replace(',', '.');
+                                                str = str.replace(/[^0123456789.\-]+/, '');
+                                                input.value = str;
+                                                //alert (str);
+                                            }
+                                        </script><input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="SVILRE" value=""> m.<br>
+
+                                        <div class="frm_title">Sviluppo planimetrico:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="SVILPLAN" value=""> m.<br>
+
+                                        <div class="frm_title">Estensione:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="ESTEN" value=""> m.<br>
+
+                                        <div class="frm_title">Dislivello positivo:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="DPOS" value=""> m<br>
+
+                                        <div class="frm_title">Dislivello negativo:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="DNEG" value=""> m.<br>
+
+                                        <div class="frm_title">Dislivello totale:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="DTOT" value=""> m.<br>
+
+                                    </fieldset><br>
+
+
+                                    <fieldset class="frm_group"><legend>Coordinate ingresso</legend>
+
+                                        <div class="frm_title">Latitudine/Y:</div>
+                                        <script type="text/javascript">
+                                            var check_lat = function(input, change)
+                                            {
+                                                var str = input.value.toString();
+                                                str = str.replace(/\s+$/, '');
+                                                str = str.replace(',', '.');
+                                                str = str.replace('"', "''");
+                                                str = str.replace(/''$/, "'' N");
+                                                str = str.replace(/nord$/i, "'' N");
+                                                str = str.replace(/ +N/, ' N');
+                                                str = str.replace(/ +E/, ' E');
+                                                str = str.replace(/ +Ovest/, ' Ovest');
+                                                if (str != input.value)
+                                                {
+                                                    if (change)
+                                                    {
+                                                        input.value = str;
+                                                    }
+                                                    else
+                                                    {
+                                                        input.style.color = 'red';
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    input.style.color = 'green';
+                                                }
+                                            };
+                                        </script><input id="latlon_latitude" onkeyup="check_lat(this, false)" onchange="check_lat(this, true)" onblur="check_lat(this, true)" title="Inserisci qui la latitude. es. 44° 12'18,2'' N " name="latitude" value="" style="color: green;"><script>check_lat(document.getElementById('latlon_latitude'), false);</script><br>
+
+                                        <div class="frm_title">Longitudine/X:</div>
+                                        <script type="text/javascript">
+                                            var check_lon = function(input, change)
+                                            {
+                                                var str = input.value.toString();
+
+                                                str = str.replace(/\s+$/, '');
+                                                str = str.replace(',', '.');
+                                                str = str.replace('"', "''");
+                                                str = str.replace(/W$/i, ' Ovest di Monte Mario');
+                                                str = str.replace(/'Ovest$/i, "' Ovest di Monte Mario");
+                                                str = str.replace(/'O$/i, "' O");
+                                                str = str.replace(/ O$/i, ' Ovest di Monte Mario');
+                                                str = str.replace(/ Ovest$/i, ' Ovest di Monte Mario');
+                                                str = str.replace(/''[\D]*mario[\D]*/i, "'' Ovest di Monte Mario");
+
+                                                str = str.replace(/Est$/i, 'E');
+                                                str = str.replace(/ e$/i, ' E');
+
+                                                str = str.replace(/ +N/, ' N');
+                                                str = str.replace(/ +E/, ' E');
+                                                str = str.replace(/ +Ovest/, ' Ovest');
+                                                if (str != input.value)
+                                                {
+                                                    if (change)
+                                                    {
+                                                        input.value = str;
+                                                    }
+                                                    else
+                                                    {
+                                                        input.style.color = 'red';
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    input.style.color = 'green';
+                                                }
+                                                //alert (input.value)
+                                            }
+                                        </script><input id="latlon_longitude" onkeyup="check_lon(this, false)" onchange="check_lon(this, true)" onblur="check_lon(this, true)" title="Inserisci qui la longitude. Se questa ` riferita a Monte Mario non dimenticarti di specificarlo, ad esempio inserendo 2°12'11,5'' W di M.Mario" name="longitude" value="" style="color: green;"><script>check_lon(document.getElementById('latlon_longitude'), false)</script> <a onclick="refreshmap()" style="cursor:pointer">Apri mappa a queste coordinate</a>
+
+                                        <script type="text/javascript">
+                                            refreshmap = function()
+                                            {
+                                                var lat = document.getElementById('latlon_latitude').value;
+                                                var lon = document.getElementById('latlon_longitude').value;
+                                                var index = document.getElementsByName("TC_01")[0].selectedIndex;
+                                                var TC_01 = document.getElementsByName("TC_01")[0].options[index].value;
+                                                var href = "http://www.catastogrotte.net/map_wms_insert.php?lat=" + lat + '&lon=' + lon + '&tipocoordinate=' + TC_01;
+                                                window.open(href, "mappa", "width=400,height=400 ,toolbar=no, location=no,status=no,menubar=no	,scrollbars=no,resizable=yes");
+                                            }
+                                        </script>
+                                        <br>
+
+                                        <div class="frm_title">Tipo di coordinate:</div>
+                                        <select name="TC_01">
+                                            <option label="" value="">----</option>
+                                            <option value="CNS 1:25000 Geografiche">CNS 1:25000 Geografiche</option>
+                                            <option value="CNS 1:25000 UTM">CNS 1:25000 UTM</option>
+                                            <option value="CNS 1:50000 Geografiche">CNS 1:50000 Geografiche</option>
+                                            <option value="CNS 1:50000 UTM">CNS 1:50000 UTM</option>
+                                            <option value="CR 1:25000 Geografiche ED50">CR 1:25000 Geografiche ED50</option>
+                                            <option value="CR 1:25000 Geografiche Gauss Boaga">CR 1:25000 Geografiche Gauss Boaga</option>
+                                            <option value="CTR 1:5000  Gauss Boaga">CTR 1:5000  Gauss Boaga</option>
+                                            <option value="CTR 1:5000  Geografiche ED50">CTR 1:5000  Geografiche ED50</option>
+                                            <option value="CTR 1:5000 Geografiche M.Mario (EST)">CTR 1:5000 Geografiche M.Mario (EST)</option>
+                                            <option value="CTR 1:5000 Geografiche M.Mario (OVEST)">CTR 1:5000 Geografiche M.Mario (OVEST)</option>
+                                            <option value="CTR 1:5000  UTM">CTR 1:5000  UTM</option>
+                                            <option value="CTR 1:10000 Gauss Boaga">CTR 1:10000 Gauss Boaga</option>
+                                            <option value="CTR 1:10000 Geografiche ED50">CTR 1:10000 Geografiche ED50</option>
+                                            <option value="CTR 1:10000 Geografiche M.Mario (EST)">CTR 1:10000 Geografiche M.Mario (EST)</option>
+                                            <option value="CTR 1:10000 Geografiche M.Mario (OVEST)">CTR 1:10000 Geografiche M.Mario (OVEST)</option>
+                                            <option value="CTR 1:10000 UTM">CTR 1:10000 UTM</option>
+                                            <option value="CTR 1:25000 Geografiche ED50">CTR 1:25000 Geografiche ED50</option>
+                                            <option value="ED50 Generiche">ED50 Generiche</option>
+                                            <option value="Gauss Boaga Generiche">Gauss Boaga Generiche</option>
+                                            <option value="GGM 1:1000 Geografiche">GGM 1:1000 Geografiche</option>
+                                            <option value="GPS Geografiche ED50">GPS Geografiche ED50</option>
+                                            <option value="GPS Geografiche ROME1940">GPS Geografiche ROME1940</option>
+                                            <option value="GPS Geografiche WGS84">GPS Geografiche WGS84</option>
+                                            <option value="GPS UTM ED50">GPS UTM ED50</option>
+                                            <option value="GPS UTM WGS84">GPS UTM WGS84</option>
+                                            <option value="IGM 1:25000 Gauss Boaga">IGM 1:25000 Gauss Boaga</option>
+                                            <option value="IGM 1:25000 Geografiche ED50">IGM 1:25000 Geografiche ED50</option>
+                                            <option value="IGM 1:25000 Geografiche M.Mario (EST)">IGM 1:25000 Geografiche M.Mario (EST)</option>
+                                            <option value="IGM 1:25000 Geografiche M.Mario (OVEST)">IGM 1:25000 Geografiche M.Mario (OVEST)</option>
+                                            <option value="IGM 1:25000 UTM">IGM 1:25000 UTM</option>
+                                            <option value="IGM 1:50000 Gauss Boaga">IGM 1:50000 Gauss Boaga</option>
+                                            <option value="IGM 1:50000 Geografiche ED50">IGM 1:50000 Geografiche ED50</option>
+                                            <option value="IGM 1:50000 UTM">IGM 1:50000 UTM</option>
+                                            <option value="ROME1940 Generiche M.Mario">ROME1940 Generiche M.Mario</option>
+                                            <option value="TCI 1:20000 Geografiche">TCI 1:20000 Geografiche</option>
+                                            <option value="UTM ED50 Generiche">UTM ED50 Generiche</option>
+                                            <option value="UTM WGS84 Generiche">UTM WGS84 Generiche</option>
+                                            <option value="WGS84 Generiche">WGS84 Generiche</option>
+                                        </select>
+                                        <br>
+                                        <div class="frm_title">Edizione:</div>
+                                        <input maxlength="255" title="Inserire l'edizione della carta" size="30" name="AE_01" value=""><br>
+
+                                        <div class="frm_title">Denominazione:</div>
+                                        <textarea style="" title="" cols="20" rows="4" name="DC_01"></textarea><br>
+
+                                        <div class="frm_title">Quota GPS:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="ATTENZIONE: la quota data dai gps barometrici NON è la quota GPS ma la quota altimetrica.
+                                               la quota GPS è quella data dall'elissoide a cui fa riferimento il datum wgs84
+                                               " size="8" name="SC_01" value=""> m.s.l.m<br>
+
+                                        <div class="frm_title">Quota altimetrica:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="QA_01" value=""> m.s.l.m<br>
+
+                                        <div class="frm_title">Quota cartografica:</div>
+                                        <input onblur="check_num(this, false)" onchange="check_num(this, false)" title="" size="8" name="QC_01" value=""> m.s.l.m<br>
+
+                                        <div class="frm_title">Valutazione dato:</div>
+                                        <input maxlength="255" title="descrivere l'affidabilità del dato inserito, per esempio coortinate GPS del 12 febbraio 2011 con precisione 4m, oppure dato preso sui carta, oppure dato preso a occhio sulla carta" size="60" name="VD_01" value=""><br>
+                                    </fieldset>
+
+                                    <div class="frm_title">Idrologia:</div>
+                                    <div onmouseover="selectover0_IDRO = true" onmouseout="selectover0_IDRO = false">
+                                        <script type="text/javascript" defer="defer">
+                                            selectover0_IDRO = false;
+                                            xmldb_field_stringselect = function(idselect, value)
+                                            {
+                                                var select = document.getElementById(idselect);
+                                                var alloptions = select.options;
+                                                var tosearch = false;
+                                                var i = 0;
+                                                var found = false;
+
+                                                for (i in alloptions)
+                                                {
+                                                    if (alloptions[i].value != undefined && alloptions[i].value != '')
+                                                    {
+                                                        tosearch = '' + alloptions[i].value.toLowerCase() + ' ' + alloptions[i].text.toLowerCase();
+                                                        try {
+                                                            if (tosearch != '' && tosearch.search(value.toLowerCase()) < 0)
+                                                            {
+                                                                alloptions[i].disabled = 'disabled';
+                                                                alloptions[i].style.display = 'none';
+                                                            }
+                                                            else
+                                                            {
+                                                                alloptions[i].style.display = 'block';
+                                                                found = true;
+                                                                alloptions[i].disabled = false;
+
+                                                            }
+                                                        } catch (e) {
+                                                            alloptions[i].style.display = 'block';
+                                                            found = true;
+                                                            alloptions[i].disabled = false;
+                                                        }
+                                                    }
+                                                }
+                                                if (found)
+                                                {
+                                                    select.style.display = 'block';
+                                                }
+                                                else
+                                                {
+                                                    select.style.display = 'none';
+                                                }
+                                            }
+
+                                        </script>
+
+                                        <span style="position:relative;"><input id="xmldb_0_IDRO" maxlength="255" title="" size="30" name="IDRO" style="margin-right:0px;" autocomplete="off" onkeyup="xmldb_field_stringselect('xmldb_0_IDRO_s', this.value)" onfocus="xdb_show_menu('xmldb_0_IDRO_s');" onclick="xdb_show_menu('xmldb_0_IDRO_s');" value=""><img style="margin-left:0px;vertical-align:middle;border:1px outset;border-left:0px;cursor:pointer" onclick="xdb_toggle_menu('xmldb_0_IDRO_s')" alt="+" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAABmJLR0QA/wD/AP+gvaeTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAB3RJTUUH3AEECjkjul6xDQAAAcpJREFUOMulUz1rVEEUPXfmfeZl89IEhe3Csohg9ToLS5uUNgqCIEjagI0/IsVrU8QPnNiowQ8QTJPC1lkxSBJNJQTFEMLma/e9N/NmLEzWfe6uKXLKyz3n3nPmDllrcR44AEBEvUKU3EKU3AQRLbi+n3hhCC8I4Pq+JKLZfvLnB1f+CPTDWgtjDBhjyb0715KiMJiYcLH0ZrMyqLLBKBwfl2i3CzBGI3vY/wSUsSdbnZHBKOxkCtGJrQrJdTE+OXn2BntZgULrSo07DsJabbgFNnUJ1JzpTdTG4rDT7VlgjMELw+EW2NX7z5yLl5sAUGoNzjmMteh0+wQc5+NpPxFJALN/M8jaLQDN2t3bSWGBWGc4aO8iVgrdbokb15tJEDiIYw7x7ocE8KFiwbQW5+3u1/TwoZDjHPjVMTjKDcqyRJaV2N/XiCKGx6+/SwCp1loMZGA23woiSg+ePpeNuJpvvR7g0fKWhLWpVkpopQZDLHc2gL0tQUTp9osV2bgwBs456vUQT5bXJaxNVVEIledQeT78GfO1l3A9TxBR+ul9Szamp7D0ak3af8inAgOHpH5+gRcEACCICCur3+Zc309Vnotht0Ln/c6/AUlbzMR4u6i3AAAAAElFTkSuQmCC"><br><select id="xmldb_0_IDRO_s" style="z-index: 1; position: absolute; display: none;" size="5" onchange="document.getElementById('xmldb_0_IDRO').value = this.options[this.selectedIndex].value;
+                                                this.style.display = 'none'"><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità assorbente-emittente">cavità assorbente-emittente</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità assorbente permanente">cavità assorbente permanente</option><option onclick="xmldb_0_IDRO_s.onchange();" value="
+                                                                                                                                                                                                        cavità assorbente temporanea">cavità assorbente temporanea</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità completamente allagata">cavità completamente allagata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità emittente permanente">cavità emittente permanente</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità emittente temporanea">cavità emittente temporanea</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità occupata da lago (sempre)">cavità occupata da lago (sempre)</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità occupata da lago (temporaneamente)">cavità occupata da lago (temporaneamente)</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità parzialmente allagata (mare)">cavità parzialmente allagata (mare)</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità totalmente subacquea (lago)">cavità totalmente subacquea (lago)</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità 
+                                                                                                                                                                                                        totalmente subacquea (mare)">cavità totalmente subacquea (mare)</option><option onclick="xmldb_0_IDRO_s.onchange();" value="cavità traforo idrogeologico">cavità traforo idrogeologico</option><option onclick="xmldb_0_IDRO_s.onchange();" value="completamente secca">completamente secca</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi">grotta assorbente perenne + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi + sifoni">grotta assorbente perenne + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi permanenti">grotta assorbente perenne + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi permanenti + sifoni permanenti">grotta assorbente perenne + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi permanenti + sifoni 
+                                                                                                                                                                                                        temporanei">grotta assorbente perenne + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi temporanei">grotta assorbente perenne + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi temporanei + sifoni permanenti">grotta assorbente perenne + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + laghi temporanei + sifoni temporanei">grotta assorbente perenne + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + sifoni">grotta assorbente perenne + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + sifoni permanenti">grotta assorbente perenne + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + sifoni temporanei">grotta assorbente 
+                                                    perenne + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti">grotta assorbente perenne + torrenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti + laghi">grotta assorbente perenne + torrenti + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti + laghi + sifoni">grotta assorbente perenne + torrenti + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti">grotta assorbente perenne + torrenti permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi permanenti">grotta assorbente perenne + torrenti permanenti + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi permanenti + sifoni permanenti">grotta assorbente perenne + torrenti 
+                                                    permanenti + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei">grotta assorbente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi temporanei">grotta assorbente perenne + torrenti permanenti + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti">grotta assorbente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti permanenti + laghi temporanei + sifoni temporanei">grotta assorbente perenne + torrenti permanenti + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta 
+                                                                                                                                                                                                        assorbente perenne + torrenti temporanei">grotta assorbente perenne + torrenti temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti temporanei + laghi permanenti">grotta assorbente perenne + torrenti temporanei + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti">grotta assorbente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei">grotta assorbente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti temporanei + laghi temporanei">grotta assorbente perenne + torrenti temporanei + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta 
+                                                                                                                                                                                                        assorbente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti">grotta assorbente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente perenne + torrenti temporanei + laghi temporanei + sifoni temporanei">grotta assorbente perenne + torrenti temporanei + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi">grotta assorbente temporanea + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi + sifoni">grotta assorbente temporanea + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi permanenti">grotta assorbente temporanea + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi permanenti + sifoni permanenti">grotta assorbente temporanea + laghi 
+                                                    permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi permanenti + sifoni temporanei">grotta assorbente temporanea + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi temporanei">grotta assorbente temporanea + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi temporanei + sifoni permanenti">grotta assorbente temporanea + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + laghi temporanei + sifoni temporanei">grotta assorbente temporanea + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + sifoni">grotta assorbente temporanea + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + sifoni 
+                                                                                                                                                                                                        permanenti">grotta assorbente temporanea + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + sifoni temporanei">grotta assorbente temporanea + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti">grotta assorbente temporanea + torrenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti + laghi">grotta assorbente temporanea + torrenti + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti + laghi + sifoni">grotta assorbente temporanea + torrenti + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti">grotta assorbente temporanea + torrenti permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti + laghi permanenti">grotta assorbente temporanea + 
+                                                    torrenti permanenti + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti">grotta assorbente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei">grotta assorbente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti + laghi temporanei">grotta assorbente temporanea + torrenti permanenti + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti">grotta assorbente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="
+                                                                                                                                                                                                        grotta assorbente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei">grotta assorbente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei">grotta assorbente temporanea + torrenti temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi permanenti">grotta assorbente temporanea + torrenti temporanei + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi permanenti + sifoni permanenti">grotta assorbente temporanea + torrenti temporanei + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi permanenti + sifoni temporanei">grotta assorbente temporanea + torrenti temporanei + laghi permanenti + sifoni 
+                                                    temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi temporanei">grotta assorbente temporanea + torrenti temporanei + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti">grotta assorbente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta assorbente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei">grotta assorbente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi">grotta emittente perenne + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi + sifoni">grotta emittente perenne + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" 
+                                                                                                                                                                                                        value="grotta emittente perenne + laghi + sifoni captata">grotta emittente perenne + laghi + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi captata">grotta emittente perenne + laghi captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi permanenti">grotta emittente perenne + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi permanenti + sifoni permanenti">grotta emittente perenne + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi permanenti + sifoni permanenti captata">grotta emittente perenne + laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi permanenti + sifoni temporanei">grotta emittente perenne + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.
+                                                                                                                                                                                                                        onchange();" value="grotta emittente perenne + laghi permanenti + sifoni temporanei captata">grotta emittente perenne + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi permanenti captata">grotta emittente perenne + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei">grotta emittente perenne + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei + sifoni permanenti">grotta emittente perenne + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei + sifoni permanenti captata">grotta emittente perenne + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei + sifoni temporanei">grotta emittente perenne 
+                                                    + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei + sifoni temporanei captata">grotta emittente perenne + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + laghi temporanei captata">grotta emittente perenne + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni">grotta emittente perenne + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni captata">grotta emittente perenne + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni permanenti">grotta emittente perenne + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni permanenti captata">grotta emittente perenne + sifoni permanenti captata</option><option 
+                                                    onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni temporanei">grotta emittente perenne + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + sifoni temporanei captata">grotta emittente perenne + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti">grotta emittente perenne + torrenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti + laghi">grotta emittente perenne + torrenti + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti + laghi + sifoni">grotta emittente perenne + torrenti + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti + laghi + sifoni captata">grotta emittente perenne + torrenti + laghi + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + 
+                                                    torrenti + laghi captata">grotta emittente perenne + torrenti + laghi captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti captata">grotta emittente perenne + torrenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti">grotta emittente perenne + torrenti permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti">grotta emittente perenne + torrenti permanenti + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni permanenti">grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni permanenti</option>
+                                                <option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni permanenti captata">grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei">grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei captata">grotta emittente perenne + torrenti permanenti + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi permanenti captata">grotta emittente perenne + torrenti permanenti + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente 
+                                                                                                                                                                                                        perenne + torrenti permanenti + laghi temporanei">grotta emittente perenne + torrenti permanenti + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti">grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti captata">grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni temporanei">grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi temporanei + sifoni temporanei captata">grotta emittente perenne + torrenti 
+                                                    permanenti + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti + laghi temporanei captata">grotta emittente perenne + torrenti permanenti + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti permanenti captata">grotta emittente perenne + torrenti permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei">grotta emittente perenne + torrenti temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti">grotta emittente perenne + torrenti temporanei + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti">grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti</
+                                                    option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti captata">grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei">grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei captata">grotta emittente perenne + torrenti temporanei + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi permanenti captata">grotta emittente perenne + torrenti temporanei + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne 
+                                                                                                                                                                                                        + torrenti temporanei + laghi temporanei">grotta emittente perenne + torrenti temporanei + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti">grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti captata">grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni temporanei">grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi temporanei + sifoni temporanei captata">grotta emittente perenne + torrenti 
+                                                    temporanei + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei + laghi temporanei captata">grotta emittente perenne + torrenti temporanei + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente perenne + torrenti temporanei captata">grotta emittente perenne + torrenti temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi">grotta emittente temporanea + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi + sifoni">grotta emittente temporanea + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi + sifoni captata">grotta emittente temporanea + laghi + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi captata">grotta emittente temporanea + 
+                                                    laghi captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi permanenti">grotta emittente temporanea + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi permanenti + sifoni permanenti">grotta emittente temporanea + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi permanenti + sifoni permanenti captata">grotta emittente temporanea + laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi permanenti + sifoni temporanei">grotta emittente temporanea + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi permanenti + sifoni temporanei captata">grotta emittente temporanea + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.
+                                                                    onchange();" value="grotta emittente temporanea + laghi permanenti captata">grotta emittente temporanea + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei">grotta emittente temporanea + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei + sifoni permanenti">grotta emittente temporanea + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei + sifoni permanenti captata">grotta emittente temporanea + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei + sifoni temporanei">grotta emittente temporanea + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei + sifoni temporanei captata"
+                                                                                                                                                                                                        >grotta emittente temporanea + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + laghi temporanei captata">grotta emittente temporanea + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni">grotta emittente temporanea + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni captata">grotta emittente temporanea + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni permanenti">grotta emittente temporanea + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni permanenti captata">grotta emittente temporanea + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni temporanei">grotta emittente temporanea + sifoni temporanei</
+                                                    option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + sifoni temporanei captata">grotta emittente temporanea + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti">grotta emittente temporanea + torrenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti + laghi">grotta emittente temporanea + torrenti + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti + laghi + sifoni">grotta emittente temporanea + torrenti + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti + laghi + sifoni captata">grotta emittente temporanea + torrenti + laghi + sifoni captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti + laghi captata">grotta emittente temporanea + torrenti + laghi captata</option><option onclick="
+                                                            xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti captata">grotta emittente temporanea + torrenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti">grotta emittente temporanea + torrenti permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti">grotta emittente temporanea + torrenti permanenti + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti">grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti captata">grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.
+                                                                            onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei">grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei captata">grotta emittente temporanea + torrenti permanenti + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi permanenti captata">grotta emittente temporanea + torrenti permanenti + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei">grotta emittente temporanea + torrenti permanenti + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti"
+                                                                                                                                                                                                        >grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti captata">grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei">grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei captata">grotta emittente temporanea + torrenti permanenti + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti + laghi temporanei captata">grotta emittente temporanea + torrenti 
+                                                    permanenti + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti permanenti captata">grotta emittente temporanea + torrenti permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei">grotta emittente temporanea + torrenti temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti">grotta emittente temporanea + torrenti temporanei + laghi permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni permanenti">grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni permanenti captata">grotta emittente temporanea + torrenti temporanei + 
+                                                    laghi permanenti + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni temporanei">grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni temporanei captata">grotta emittente temporanea + torrenti temporanei + laghi permanenti + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi permanenti captata">grotta emittente temporanea + torrenti temporanei + laghi permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi temporanei">grotta emittente temporanea + torrenti temporanei + laghi temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta 
+                                                                                                                                                                                                        emittente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti">grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti captata">grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni permanenti captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei">grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei captata">grotta emittente temporanea + torrenti temporanei + laghi temporanei + sifoni temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti 
+                                                                                                                                                                                                        temporanei + laghi temporanei captata">grotta emittente temporanea + torrenti temporanei + laghi temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="grotta emittente temporanea + torrenti temporanei captata">grotta emittente temporanea + torrenti temporanei captata</option><option onclick="xmldb_0_IDRO_s.onchange();" value="laghi + sifoni">laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="laghi interni">laghi interni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="neve/ghiaccio + torrenti + sifoni">neve/ghiaccio + torrenti + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="neve/ghiaccio + torrenti interni">neve/ghiaccio + torrenti interni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="neve/ghiaccio permanente">neve/ghiaccio permanente</option><option onclick="xmldb_0_IDRO_s.onchange();" value="neve/ghiacco stagionale">neve/ghiacco stagionale</option><option onclick="xmldb_0_IDRO_s.onchange();" value="sifoni"
+                                                                                                                                                                                                        >sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="solo stillicidio">solo stillicidio</option><option onclick="xmldb_0_IDRO_s.onchange();" value="sorgente intercalare">sorgente intercalare</option><option onclick="xmldb_0_IDRO_s.onchange();" value="termale">termale</option><option onclick="xmldb_0_IDRO_s.onchange();" value="torrenti + laghi">torrenti + laghi</option><option onclick="xmldb_0_IDRO_s.onchange();" value="torrenti + laghi + sifoni">torrenti + laghi + sifoni</option><option onclick="xmldb_0_IDRO_s.onchange();" value="torrenti interni">torrenti interni</option></select>&nbsp;</span>
+                                        <script type="text/javascript" defer="defer">
+                                            xdb_toggle_menu = function(id) {
+                                                if (document.getElementById(id).style.display == 'none')
+                                                {
+                                                    xdb_show_menu(id);
+                                                }
+                                                else
+                                                {
+                                                    xdb_hide_menu(id);
+                                                }
+                                            };
+                                            xdb_show_menu = function(id)
+                                            {
+                                                document.getElementById(id).style.display = 'block';
+
+                                            };
+                                            xdb_hide_menu = function(id)
+                                            {
+                                                document.getElementById(id).style.display = 'none';
+
+                                            };
+                                            xmldb_0_IDRO_s_hideshow = function()
+                                            {
+                                                if (!selectover0_IDRO)
+                                                    xdb_hide_menu('xmldb_0_IDRO_s');
+                                            };
+                                            oldonclick = document.getElementsByTagName('body')[0].getAttribute('onclick');
+                                            document.getElementsByTagName('body')[0].setAttribute('onclick', oldonclick + ";xmldb_0_IDRO_s_hideshow()");
+                                        </script>
+
+                                    </div><br>
+
+                                    <div class="frm_title">Andamento:</div>
+                                    <input onchange="check_upper(this, true)" title="es. Orizzontale, in leggera discesa, verticale" size="30" name="ANDAMENTO" value=""><br>
+
+                                    <div class="frm_title">Percorribilità:</div>
+                                    <input onchange="check_upper(this, true)" title="es. Facile" size="30" name="PERCORRIBILITA" value=""><br>
+
+                                    <div class="frm_title">GRUPPI:</div>
+                                    <textarea style="" 
+                                              onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                          this.style.height = 10 + this.scrollHeight + 'px';
+                                                      }" 
+                                              onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                          this.style.height = 10 + this.scrollHeight + 'px';
+                                                      }" 
+                                              title="Gruppi o persone che hanno effettuato attività rilevanti o esplorative sulla cacità" cols="80" rows="3" name="GRUPPI"></textarea><br>
+
+                                    <div class="frm_title">Cronologia catastale:</div>
+                                    <textarea style="" 
+                                              onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                          this.style.height = 10 + this.scrollHeight + 'px';
+                                                      }" 
+                                              onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                          this.style.height = 10 + this.scrollHeight + 'px';
+                                                      }" 
+                                              title="Cronologia delle versioni, esempio: 
+                                              1990 - Mario Rossi - primo accatastatore
+                                              2002 - Paolo Bianchi - aggiornamento per nuovo ramo esplorato, aggiunta descrizione
+                                              2010 - Pinco Pallino - riposizionamento
+                                              aggiungere in coda le modifiche" cols="80" rows="3" name="CRONOLOGIA"></textarea><br>
+
+                                    <div class="frm_title">NOTE:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="60" rows="3" name="NOTE"></textarea><br>
+
+                                    <div class="frm_title">DESCRIZIONE:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="80" rows="3" name="DESCRIZIONE"></textarea><br>
+
+                                    <div class="frm_title">ITINERARIO:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="80" rows="3" name="ITINERARIO"></textarea><br>
+
+                                    <div class="frm_title">Sequenza pozzi:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="Es. 10,5,50,20" cols="80" rows="3" name="POZZI"></textarea><br>
+
+                                    <div class="frm_title">Fauna:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="80" rows="3" name="FAUNA"></textarea><br>
+
+                                    <div class="frm_title">Storia:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="80" rows="3" name="STORIA"></textarea><br>
+
+                                    <div class="frm_title">Informazioni aggiuntive:</div>
+                                    <textarea style="" onkeyup="if (this.scrollHeight >= this.offsetHeight) {
+                                                this.style.height = 10 + this.scrollHeight + 'px';
+                                            }" onfocus="if (this.scrollHeight >= this.offsetHeight) {
+                                                        this.style.height = 10 + this.scrollHeight + 'px';
+                                                    }" title="" cols="90" rows="3" name="NOTE2"></textarea><br>
+
+                                    <fieldset class="frm_group"><legend>Riferimenti a censimenti speciali</legend>
+
+                                        <div class="frm_title">Cavità marina:</div>
+                                        <span style="white-space:nowrap"><input type="radio" value="S" title="" name="marina">Si</span>&nbsp; <span style="white-space:nowrap"><input type="radio" value="N" title="" name="marina">No</span>&nbsp; <script type="text/javascript">setTimeout("", 0);</script><br>
+
+                                        <div class="frm_title">Cavità archeologica:</div>
+                                        <span style="white-space:nowrap"><input type="radio" value="S" title="" name="archeologica">Si</span>&nbsp; <span style="white-space:nowrap"><input type="radio" value="N" title="" name="archeologica">No</span>&nbsp; <script type="text/javascript">setTimeout("", 0);</script><br>
+
+                                        <div class="frm_title">Cavità a rischio ambientale:</div>
+                                        <span style="white-space:nowrap"><input type="radio" value="S" title="" name="rischioambientale">Si</span>&nbsp; <span style="white-space:nowrap"><input type="radio" value="N" title="" name="rischioambientale">No</span>&nbsp; <script type="text/javascript">setTimeout("", 0);</script><br>
+
+                                        <div class="frm_title">Cavità chiusa:</div>
+                                        <span style="white-space:nowrap"><input type="radio" value="S" title="" name="chiusa">Si</span>&nbsp; <span style="white-space:nowrap"><input type="radio" value="N" title="" name="chiusa">No</span>&nbsp; <script type="text/javascript">setTimeout("", 0);</script><br>
+
+                                        <div class="frm_title">Cavità distrutta:</div>
+                                        <span style="white-space:nowrap"><input type="radio" value="X" title="" name="distrutta">Si</span>&nbsp; <span style="white-space:nowrap"><input checked="checked" type="radio" value="" title="" name="distrutta">No</span>&nbsp; <span style="white-space:nowrap"><input type="radio" value="P" title="" name="distrutta">Parzialmente</span>&nbsp; <script type="text/javascript">setTimeout("", 0);</script><br>
+
+                                    </fieldset><br>
+
+
+
+
+                                    <div class="frm_title">Note relative a questa versione della scheda:</div>
+                                    <input maxlength="255" title="" size="80" name="noteversione" value=""><br>
+
+                                    <div class="frm_title">Autore testi descrizione:</div>
+                                    <input maxlength="255" title="" size="30" name="authorDESCRIZIONE" value=""><br>
+
+                                    <div class="frm_title">Autore testi Itinerario:</div>
+                                    <input maxlength="255" title="" size="30" name="authorITINERARIO" value=""><br>
+
+                                    <div class="frm_title">Autore testi Fauna:</div>
+                                    <input maxlength="255" title="" size="30" name="authorFAUNA" value=""><br>
+
+                                    <div class="frm_title">Autore testi Soria:</div>
+                                    <input maxlength="255" title="" size="30" name="authorSTORIA" value=""><br>
+
+
+                                    <button class="save" type="button" onclick='document.title = "scheda catastale " + document.getElementsByName("NOME")[0].value;
+                                            SaveAs();'>Salva su disco</button> 
+
+                                    <script>
+                                        function createmail() {
+                                            var email = "speleoalex@gmail.com";
+                                            document.title = "scheda catastale " + document.getElementsByName("NOME")[0].value;
+                                            window.location = "mailto:" + email + "?Subject=" + "Inserimento grotta " + document.getElementsByName("NOME")[0].value + " sul catasto ligure";
+                                            alert('Allega il file alla mail e inviala a speleoalex@gmail.com e allega alla mail eventuali rilievi o foto');
+                                            SaveAs();
+                                        }
+                                    </script>
+                                    <button  class="email" type="button" id="maillink" onclick="createmail();" href="#">Invia per email</button> 
+                                    <br />
+                                    <button style="float:right" type="submit" >Salva sul gestionale (solo per curatori)</button></form>
+                            </div></body></html>
