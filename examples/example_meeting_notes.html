@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meeting Notes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #e8e8e8;
+        }
+        .document {
+            background: white;
+            padding: 40px;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #2c3e50;
+        }
+        .header h1 {
+            margin: 0;
+            color: #2c3e50;
+            font-size: 28px;
+        }
+        .header-meta {
+            text-align: right;
+        }
+        .header-meta label {
+            font-size: 12px;
+            color: #666;
+        }
+        .header-meta input {
+            border: none;
+            border-bottom: 1px solid #ccc;
+            padding: 5px;
+            font-size: 14px;
+            text-align: right;
+        }
+        label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+        input[type="text"],
+        input[type="date"],
+        input[type="time"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+            min-height: 80px;
+            resize: vertical;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+        .row > div {
+            flex: 1;
+        }
+        .section {
+            margin-bottom: 25px;
+        }
+        .section-header {
+            background: #2c3e50;
+            color: white;
+            padding: 8px 15px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .action-item {
+            background: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            border-left: 4px solid #3498db;
+        }
+        .action-item .row {
+            margin-bottom: 10px;
+        }
+        .action-item input[type="text"] {
+            margin-bottom: 0;
+        }
+        .action-item label {
+            font-size: 12px;
+            margin-bottom: 3px;
+        }
+        .priority-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        .priority-group label {
+            display: inline;
+            font-weight: normal;
+            margin-bottom: 0;
+        }
+        .priority-group input {
+            margin-right: 5px;
+        }
+        .status-badge {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+        }
+        .btn-save {
+            background-color: #27ae60;
+            color: white;
+        }
+        .btn-save:hover {
+            background-color: #219a52;
+        }
+        .btn-print {
+            background-color: #3498db;
+            color: white;
+        }
+        .btn-print:hover {
+            background-color: #2980b9;
+        }
+        .button-bar {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        @media print {
+            body { background: white; padding: 0; }
+            .document { box-shadow: none; padding: 20px; }
+            .button-bar { display: none; }
+            .action-item { break-inside: avoid; }
+        }
+    </style>
+    <!-- start SaveOfflineForm code -->
+    <script>
+        (navigator.appVersion.indexOf("MSIE") != -1) && alert("Internet Explorer is not supported. Please use Chrome or Firefox!");
+
+        var DownloadFile = function(data, name) {
+            var el = document.createElement('a');
+            var ev = document.createEvent("MouseEvents");
+            ev.initMouseEvent("click", true, false, self, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+            el.setAttribute("href", 'data:application/octet-stream;base64,' + btoa(unescape(encodeURIComponent(data))));
+            el.setAttribute("download", name || self.location.pathname.slice(self.location.pathname.lastIndexOf('/') + 1));
+            el.dispatchEvent(ev);
+        };
+
+        var SaveAs = function() {
+            var elements = document.getElementsByTagName("input");
+            for (var i in elements) {
+                try {
+                    elements[i].setAttribute("value", elements[i].value);
+                    if (elements[i].checked)
+                        elements[i].setAttribute("checked", "checked");
+                    else
+                        elements[i].removeAttribute("checked");
+                } catch (e) {}
+            }
+            elements = document.getElementsByTagName("textarea");
+            for (var i in elements) {
+                try {
+                    elements[i].innerHTML = elements[i].value;
+                } catch (e) {}
+            }
+            elements = document.getElementsByTagName("select");
+            for (var i in elements) {
+                if (elements[i].options) {
+                    var selectedIndex = elements[i].selectedIndex;
+                    for (var o in elements[i].options) {
+                        try {
+                            elements[i].options[o].removeAttribute("selected");
+                        } catch (e) {}
+                    }
+                    elements[i].options[selectedIndex].setAttribute("selected", "selected");
+                }
+            }
+            var filename = document.getElementsByTagName("title")[0].innerHTML.replace(/ /g, "_") + "_" +
+                new Date().toISOString().slice(0, 10) + ".html";
+            DownloadFile("<!DOCTYPE html>\n<html>\n" + document.getElementsByTagName("html")[0].innerHTML + "\n</html>", filename);
+        }
+    </script>
+    <!-- end SaveOfflineForm code -->
+</head>
+<body>
+    <div class="document">
+        <div class="header">
+            <div>
+                <h1>Meeting Notes</h1>
+            </div>
+            <div class="header-meta">
+                <label>Meeting ID</label>
+                <input type="text" id="meeting_id" name="meeting_id" placeholder="MTG-001" style="width: 120px;">
+            </div>
+        </div>
+
+        <form>
+            <div class="section">
+                <div class="row">
+                    <div>
+                        <label for="meeting_title">Meeting Title</label>
+                        <input type="text" id="meeting_title" name="meeting_title" placeholder="Weekly Team Standup">
+                    </div>
+                    <div>
+                        <label for="project">Project / Team</label>
+                        <input type="text" id="project" name="project" placeholder="Project Alpha">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div>
+                        <label for="time">Time</label>
+                        <input type="time" id="time" name="time">
+                    </div>
+                    <div>
+                        <label for="duration">Duration</label>
+                        <input type="text" id="duration" name="duration" placeholder="1 hour">
+                    </div>
+                </div>
+                <div class="row">
+                    <div>
+                        <label for="location">Location / Platform</label>
+                        <input type="text" id="location" name="location" placeholder="Conference Room A / Zoom">
+                    </div>
+                    <div>
+                        <label for="facilitator">Facilitator</label>
+                        <input type="text" id="facilitator" name="facilitator" placeholder="John Smith">
+                    </div>
+                </div>
+                <label for="attendees">Attendees</label>
+                <input type="text" id="attendees" name="attendees" placeholder="John Smith, Jane Doe, Bob Wilson, Alice Brown">
+            </div>
+
+            <div class="section">
+                <div class="section-header">Agenda</div>
+                <textarea id="agenda" name="agenda" placeholder="1. Review last week's action items
+2. Project status updates
+3. Discuss upcoming milestones
+4. Open discussion"></textarea>
+            </div>
+
+            <div class="section">
+                <div class="section-header">Discussion Notes</div>
+                <textarea id="notes" name="notes" style="min-height: 150px;" placeholder="Key points discussed during the meeting..."></textarea>
+            </div>
+
+            <div class="section">
+                <div class="section-header">Decisions Made</div>
+                <textarea id="decisions" name="decisions" placeholder="• Decision 1: ...
+• Decision 2: ..."></textarea>
+            </div>
+
+            <div class="section">
+                <div class="section-header">Action Items</div>
+
+                <div class="action-item">
+                    <div class="row">
+                        <div style="flex: 2;">
+                            <label>Task Description</label>
+                            <input type="text" name="action1_task" placeholder="Prepare project proposal document">
+                        </div>
+                        <div>
+                            <label>Assigned To</label>
+                            <input type="text" name="action1_owner" placeholder="John Smith">
+                        </div>
+                        <div>
+                            <label>Due Date</label>
+                            <input type="date" name="action1_due">
+                        </div>
+                    </div>
+                    <div class="priority-group">
+                        <label><input type="radio" name="action1_priority" value="high"> High</label>
+                        <label><input type="radio" name="action1_priority" value="medium"> Medium</label>
+                        <label><input type="radio" name="action1_priority" value="low"> Low</label>
+                        <label style="margin-left: 20px;"><input type="checkbox" name="action1_done" value="done"> Completed</label>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="row">
+                        <div style="flex: 2;">
+                            <label>Task Description</label>
+                            <input type="text" name="action2_task" placeholder="Schedule follow-up meeting with stakeholders">
+                        </div>
+                        <div>
+                            <label>Assigned To</label>
+                            <input type="text" name="action2_owner" placeholder="Jane Doe">
+                        </div>
+                        <div>
+                            <label>Due Date</label>
+                            <input type="date" name="action2_due">
+                        </div>
+                    </div>
+                    <div class="priority-group">
+                        <label><input type="radio" name="action2_priority" value="high"> High</label>
+                        <label><input type="radio" name="action2_priority" value="medium"> Medium</label>
+                        <label><input type="radio" name="action2_priority" value="low"> Low</label>
+                        <label style="margin-left: 20px;"><input type="checkbox" name="action2_done" value="done"> Completed</label>
+                    </div>
+                </div>
+
+                <div class="action-item">
+                    <div class="row">
+                        <div style="flex: 2;">
+                            <label>Task Description</label>
+                            <input type="text" name="action3_task" placeholder="Review and update project timeline">
+                        </div>
+                        <div>
+                            <label>Assigned To</label>
+                            <input type="text" name="action3_owner" placeholder="Bob Wilson">
+                        </div>
+                        <div>
+                            <label>Due Date</label>
+                            <input type="date" name="action3_due">
+                        </div>
+                    </div>
+                    <div class="priority-group">
+                        <label><input type="radio" name="action3_priority" value="high"> High</label>
+                        <label><input type="radio" name="action3_priority" value="medium"> Medium</label>
+                        <label><input type="radio" name="action3_priority" value="low"> Low</label>
+                        <label style="margin-left: 20px;"><input type="checkbox" name="action3_done" value="done"> Completed</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section">
+                <div class="section-header">Next Meeting</div>
+                <div class="row">
+                    <div>
+                        <label for="next_date">Date</label>
+                        <input type="date" id="next_date" name="next_date">
+                    </div>
+                    <div>
+                        <label for="next_time">Time</label>
+                        <input type="time" id="next_time" name="next_time">
+                    </div>
+                    <div>
+                        <label for="next_location">Location</label>
+                        <input type="text" id="next_location" name="next_location" placeholder="TBD">
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-bar">
+                <button type="button" class="btn btn-save" onclick="SaveAs();">Save to Disk</button>
+                <button type="button" class="btn btn-print" onclick="window.print();">Print</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
