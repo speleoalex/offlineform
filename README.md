@@ -1,16 +1,96 @@
-# offlineform
-Add this code within the html page between the <body> tags
-<!-- start SaveOfflineForm code -->
-    <button type="button" onclick="SaveAs();">Save to Disk</button>
-<!-- end SaveOfflineForm code -->
+# Offline Form
 
+This project provides a simple and effective way to save and restore HTML form data, allowing for offline usage and re-editable forms. The script captures the current state of all form fields and saves the entire HTML page with the data embedded.
 
+## Features
 
-Add this code between the <head> tags :
+- **Save Form Data**: Save the current state of your form, including text inputs, textareas, checkboxes, radio buttons, and select fields.
+- **Offline Usage**: The saved file is a self-contained HTML document that can be opened and edited without an internet connection.
+- **Data Restoration**: When the saved HTML file is opened, the form fields are automatically repopulated with the saved data.
+- **No Dependencies**: The script is written in plain JavaScript and requires no external libraries.
 
-<!-- start SaveOfflineForm code -->
-<script>
-            -1!=navigator.appVersion.indexOf("MSIE")&&alert("If you use the Explorer browser will not be able to save the data. Use Chrome or Firefox!");var DownloadFile=function(e,t){var a=document.createElement("a"),n=document.createEvent("MouseEvents");n.initMouseEvent("click",!0,!1,self,0,0,0,0,0,!1,!1,!1,!1,0,null),a.setAttribute("href","data:application/octet-stream;base64,"+btoa(unescape(encodeURIComponent(e)))),a.setAttribute("download",t||self.location.pathname.slice(self.location.pathname.lastIndexOf("/")+1)),a.dispatchEvent(n)},SaveAs=function(){var e=document.getElementsByTagName("input");for(var t in e)try{e[t].setAttribute("value",e[t].value),e[t].checked?e[t].setAttribute("checked","checked"):e[t].removeAttribute("checked")}catch(e){}for(var t in e=document.getElementsByTagName("textarea"))try{e[t].innerHTML=e[t].value}catch(e){}for(var t in e=document.getElementsByTagName("select"))if(e[t].options){var a=e[t].selectedIndex;for(var n in e[t].options)try{e[t].options[n].removeAttribute("selected")}catch(e){}e[t].options[a].setAttribute("selected","selected")}var o=document.getElementsByTagName("title")[0].innerHTML.replace(/ /g,"_")+"_"+(new Date).toISOString().slice(0,19).replace("T","_").substr(0,10)+".html";DownloadFile("<!DOCTYPE html>\n<html>\n"+document.getElementsByTagName("html")[0].innerHTML+"\n</html>",o)};
-</script>
-<!-- end SaveOfflineForm code -->
+## How to Use
 
+1.  **Add the script to your HTML**: Copy the following JavaScript code and place it within the `<head>` section of your HTML file.
+
+    ```html
+    <script>
+        function saveAs() {
+            const inputs = document.getElementsByTagName("input");
+            const textareas = document.getElementsByTagName("textarea");
+            const selects = document.getElementsByTagName("select");
+
+            for (let input of inputs) {
+                input.setAttribute("value", input.value);
+                if (input.type === "checkbox" || input.type === "radio") {
+                    input.checked ? input.setAttribute("checked", "checked") : input.removeAttribute("checked");
+                }
+            }
+
+            for (let textarea of textareas) {
+                textarea.innerHTML = textarea.value;
+            }
+
+            for (let select of selects) {
+                for (let option of select.options) {
+                    option.selected ? option.setAttribute("selected", "selected") : option.removeAttribute("selected");
+                }
+            }
+
+            const contentToSave = document.documentElement.outerHTML;
+            const blob = new Blob([contentToSave], { type: "text/html;charset=utf-8" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = `${document.title.replace(/ /g, "_")}_${new Date().toISOString().slice(0, 10)}.html`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+
+        // Restore saved values when the document is loaded
+        document.addEventListener("DOMContentLoaded", function() {
+            const inputs = document.getElementsByTagName("input");
+            const textareas = document.getElementsByTagName("textarea");
+            const selects = document.getElementsByTagName("select");
+
+            for (let input of inputs) {
+                if (input.hasAttribute("value")) {
+                    input.value = input.getAttribute("value");
+                }
+                if (input.hasAttribute("checked")) {
+                    input.checked = true;
+                }
+            }
+
+            for (let textarea of textareas) {
+                textarea.value = textarea.innerHTML;
+            }
+
+            for (let select of selects) {
+                for (let option of select.options) {
+                    if (option.hasAttribute("selected")) {
+                        option.selected = true;
+                    }
+                }
+            }
+        });
+    </script>
+    ```
+
+2.  **Add a "Save" button**: Place a button in your HTML's `<body>` section to trigger the save function.
+
+    ```html
+    <button type="button" onclick="saveAs()">Save to Disk</button>
+    ```
+
+Now, when you open the HTML file in a browser, you can fill out the form and click the "Save to Disk" button. A new HTML file with the entered data will be downloaded to your computer. When you open the downloaded file, the form will be pre-filled with your data.
+
+## Examples
+
+You can find more examples of how to use this script in the `examples/` directory.
+
+## Contributing
+
+Contributions are welcome! If you have any improvements or bug fixes, feel free to open an issue or submit a pull request.
